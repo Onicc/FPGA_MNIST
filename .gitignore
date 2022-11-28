@@ -1,6 +1,13 @@
 # MacOS temporary file
 *.DS_Store 
 
+# cocotb temporary file
+05_Cocotb_Simulation/sim/sim_build
+05_Cocotb_Simulation/sim/modelsim.ini
+05_Cocotb_Simulation/sim/results.xml
+05_Cocotb_Simulation/sim/transcript
+05_Cocotb_Simulation/sim/vish_stacktrace.vstf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

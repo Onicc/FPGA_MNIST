@@ -59,7 +59,7 @@ int main() {
     weight_map["w7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w7.xen";
     weight_map["w8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w8.xen";
 
-    weight_map["inout_root"] = "/Users/caixc/Documents/Work/Project/IC/NNA/Data/xcen_data/MNIST/inout_2x/";
+    weight_map["inout_root"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/MNIST/xen/";
 
 
     Matx<int8_t> w1;
@@ -164,7 +164,7 @@ int main() {
 
     int correct_num = 0;
     int sum_num = 0;
-    for(int i = 0; i < 10000; i++) {
+    for(int i = 0; i < 100; i++) {
         input.load(weight_map["inout_root"] + "input_" + to_string(i) + ".xen", 3);
         // input.load(weight_map["input"], 3);
         output.load(weight_map["inout_root"] + "output_" + to_string(i) + ".xen", 3);
