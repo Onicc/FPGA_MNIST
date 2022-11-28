@@ -302,7 +302,7 @@ async def run_test(dut):
 
     # await Timer(500, "ns")
 
-    for i in range(0, 10000):
+    for i in range(0, 100):
         print("{}th".format(i))
         input_din, verift_model_output, \
         dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \

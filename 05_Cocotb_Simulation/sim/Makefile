@@ -17,14 +17,14 @@ export PYTHONPATH := $(PWD)/verify:$(PYTHONPATH)
 # export PYTHONPATH := $(PWD)/verify/utils:$(PYTHONPATH)
 
 # 导入Verilog文件
-VERILOG_SOURCES = $(PWD)/../../../rtl/base/*.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/conv_unit.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/dconv.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/pconv_unit.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/pconv.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/padding.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/nn/dwconv.v
-VERILOG_SOURCES += $(PWD)/../../../rtl/top/mnist.v
+VERILOG_SOURCES = $(PWD)/../rtl/base/*.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/conv_unit.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/dconv.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_unit.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/padding.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv.v
+VERILOG_SOURCES += $(PWD)/../rtl/top/mnist.v
 
 # # 设置参数
 # # Set module parameters
