@@ -130,7 +130,7 @@
         end
     endgenerate
 
-    always @(posedge input_vld or negedge rst_n) begin
+    always @(posedge input_vld) begin
         if(rst_n == 1'b0) begin
             in_cnt <= 0;
         end else begin
@@ -160,7 +160,7 @@
         end
     end
 
-    always @(posedge clk or negedge rst_n) begin
+    always @(posedge clk) begin
         if(rst_n == 1'b0) begin
             conv_dout_end <= 1'b1;
         end else begin

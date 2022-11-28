@@ -14,7 +14,7 @@ module tb_minst();
         sys_clk = 1'b0;
         sys_rst_n = 1'b0;
         key_0 = 1'b1;
-        #20
+        #100
         sys_rst_n = 1'b1;
 
         #100000

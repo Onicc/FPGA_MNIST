@@ -204,7 +204,7 @@ class Conv2dDrive(object):
                     await edge                                              # 等待上升沿
                     self.input_vld.value = 0                                # 关闭输入有效
                     # for i in range(19):
-                    for i in range(N + 3):
+                    for i in range(N + 4):
                         await edge                                          # 等待上升沿
             else:
                 await edge
@@ -239,7 +239,7 @@ class Conv2dDrive(object):
         model_output_bin = []
         for i, d in enumerate(self.model_output):
             model_output_bin.append(str(d))
-        # print(model_output_bin)
+        print(model_output_bin)
         model_output = []
         for i in range(10):
             model_output.append(model_output_bin[0][i*8:(i+1)*8])
@@ -291,7 +291,7 @@ async def run_test(dut):
     # dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
     # dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
     # dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-    # dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4  = mnist(1, bitwidth = N)
+    # dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4  = mnist(0, bitwidth = N)
     # tb.model_drive.add_input_output(input_din, verift_model_output, \
     #                                 dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
     #                                 dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
@@ -299,8 +299,6 @@ async def run_test(dut):
     #                                 dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4)
     # await tb.model_drive.wait_completion()
     # tb.model_drive.check()
-
-    # await Timer(500, "ns")
 
     for i in range(0, 100):
         print("{}th".format(i))

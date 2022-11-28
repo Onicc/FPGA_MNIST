@@ -1,6 +1,6 @@
 module img # (
     parameter TOTAL_BYTES = 28*28,
-    parameter CLK_INTERVAL = 11 // 12(真正的周期) - 1
+    parameter CLK_INTERVAL = 12 // 13(真正的周期) - 1
     )(
     input wire clk,
     input wire rst_n,

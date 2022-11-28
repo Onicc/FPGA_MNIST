@@ -66,7 +66,7 @@
     endgenerate
 
     integer i2;
-    always @(*) begin
+    always @(posedge clk) begin
         if(rst_n == 1'b0) begin
             conv_dout_temp = 0;
         end else begin
