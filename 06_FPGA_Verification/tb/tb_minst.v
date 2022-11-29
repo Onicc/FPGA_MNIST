@@ -6,6 +6,7 @@ module tb_minst();
     reg sys_clk;
     reg sys_rst_n;
     reg key_0;
+    wire uart_txd;
     wire led_0;
     wire led_1;
 
@@ -19,7 +20,7 @@ module tb_minst();
 
         #100000
         key_0 = 1'b0;
-        #20
+        #100
         key_0 = 1'b1;
     end
 
@@ -30,6 +31,8 @@ module tb_minst();
         .clk(sys_clk),
         .rst_n(sys_rst_n),
         .key_0(key_0),
+
+        .uart_txd(uart_txd),
         .led_0(led_0),
         .led_1(led_1)
     );

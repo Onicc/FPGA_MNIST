@@ -8,6 +8,9 @@
 05_Cocotb_Simulation/sim/transcript
 05_Cocotb_Simulation/sim/vish_stacktrace.vstf
 
+# vivado prj
+06_FPGA_Verification/vivado_prj
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,16 @@
+set_property PACKAGE_PIN N18 [get_ports clk]
+set_property PACKAGE_PIN T12 [get_ports key_0]
+set_property PACKAGE_PIN P16 [get_ports rst_n]
+set_property PACKAGE_PIN U12 [get_ports led_0]
+set_property PACKAGE_PIN P15 [get_ports led_1]
+set_property PACKAGE_PIN W15 [get_ports uart_txd]
+set_property IOSTANDARD LVCMOS33 [get_ports clk]
+set_property IOSTANDARD LVCMOS33 [get_ports key_0]
+set_property IOSTANDARD LVCMOS33 [get_ports led_0]
+set_property IOSTANDARD LVCMOS33 [get_ports led_1]
+set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
+set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets rst_n_IBUF]
+create_clock -name clk -period 20 [get_ports clk]
+

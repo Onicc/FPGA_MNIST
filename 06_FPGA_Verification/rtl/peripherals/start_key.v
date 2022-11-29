@@ -9,41 +9,54 @@ module start_key #(
     output reg dout_start
 );
     reg [31:0] cnt;
+    reg din_flag;
 
-    // 点亮LED并在1s后关闭LED
     always@(posedge clk) begin
         if(rst_n == 1'b0) begin
-            dout_led <= 1'b1;   // 低电平点亮LED
+            din_flag <= 1'b0;
         end else begin
             if(din == 1'b0) begin   // 如果按键按下
-                dout_led <= 1'b0;   // 点亮LED
-            end else if(cnt >= FREQUENCY) begin
-                dout_led <= 1'b1;   // 1s后关闭LED
+                din_flag <= 1'b1;
             end else begin
-                dout_led <= dout_led;
+                din_flag <= 1'b0;
             end
         end
     end
 
-    // 当LED亮起后计数器开始计数
+    // 输出正确时开始计数
     always@(posedge clk) begin
         if(rst_n == 1'b0) begin
-            cnt <= 32'd0;
+            cnt <= 32'hffffffff;
         end else begin
-            if(dout_led == 1'b0) begin
+            if(din_flag == 1'b1) begin
+                cnt <= 32'd0;
+            end else if(cnt < FREQUENCY) begin
                 cnt <= cnt + 1'b1;
             end else begin
-                cnt <= 32'd0;
+                cnt <= cnt;
             end
         end
     end
 
-    // 当计数开始后dout_start信号拉高一个周期
+    // 计数期间亮灯，计数完后灭灯
+    always@(posedge clk) begin
+        if(rst_n == 1'b0) begin
+            dout_led <= 1'b1;
+        end else begin
+            if(cnt < FREQUENCY) begin
+                dout_led <= 1'b0;
+            end else begin
+                dout_led <= 1'b1;
+            end
+        end
+    end
+
+    // 按下按键后的1000个时钟后发送开始信号
     always@(posedge clk) begin
         if(rst_n == 1'b0) begin
             dout_start <= 1'b0;
         end else begin
-            if(cnt == 32'd1) begin
+            if(cnt == 1000) begin
                 dout_start <= 1'b1;
             end else begin
                 dout_start <= 1'b0;

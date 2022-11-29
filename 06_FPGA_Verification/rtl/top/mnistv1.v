@@ -4,6 +4,7 @@ module mnistv1(
     input wire rst_n,
     input wire key_0,     // 开始计算按键
 
+    output wire uart_txd,   //UART发送端口
     output wire led_0,  // 输出结果验证LED，显示1s
     output wire led_1   // 按键输入显示LED，显示1s
 );
@@ -61,6 +62,14 @@ module mnistv1(
         .din(key_0),
         .dout_led(led_1),
         .dout_start(start_flag)
+    );
+
+    output_send u_output_send(
+        .clk(clk),
+        .rst_n(rst_n),
+        .model_ouput(conv_dout),
+
+        .uart_txd(uart_txd)
     );
 
 endmodule
