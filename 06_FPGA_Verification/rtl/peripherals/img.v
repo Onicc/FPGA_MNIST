@@ -89,7 +89,7 @@ module img # (
         end
     end
 
-    // shiuchu1
+    // shuchu1
     always @ (posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             img_dout <= 0;

@@ -1,6 +1,6 @@
 // 当输出与设定值吻合时灯亮1s
 module start_key #(
-    parameter FREQUENCY = 50000000
+    parameter COUNT = 75000
     )(
     input wire clk,
     input wire rst_n,
@@ -30,7 +30,7 @@ module start_key #(
         end else begin
             if(din_flag == 1'b1) begin
                 cnt <= 32'd0;
-            end else if(cnt < FREQUENCY) begin
+            end else if(cnt < COUNT) begin
                 cnt <= cnt + 1'b1;
             end else begin
                 cnt <= cnt;
@@ -43,7 +43,7 @@ module start_key #(
         if(rst_n == 1'b0) begin
             dout_led <= 1'b1;
         end else begin
-            if(cnt < FREQUENCY) begin
+            if(cnt < COUNT) begin
                 dout_led <= 1'b0;
             end else begin
                 dout_led <= 1'b1;

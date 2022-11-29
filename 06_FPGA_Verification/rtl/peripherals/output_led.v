@@ -1,7 +1,7 @@
 // 当输出与设定值吻合时灯亮1s
 module output_led #(
     parameter MODEL_OUTPUT = 80'h1D471500200000B00037,
-    parameter FREQUENCY = 50000000
+    parameter COUNT = 75000
     )(
     input wire clk,
     input wire rst_n,
@@ -32,7 +32,7 @@ module output_led #(
         end else begin
             if(output_flag == 1'b1) begin
                 cnt <= 32'd0;
-            end else if(cnt < FREQUENCY) begin
+            end else if(cnt < COUNT) begin
                 cnt <= cnt + 1'b1;
             end else begin
                 cnt <= cnt;
@@ -45,7 +45,7 @@ module output_led #(
         if(rst_n == 1'b0) begin
             dout <= 1'b1;
         end else begin
-            if(cnt < FREQUENCY) begin
+            if(cnt < COUNT) begin
                 dout <= 1'b0;
             end else begin
                 dout <= 1'b1;

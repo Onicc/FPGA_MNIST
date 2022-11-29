@@ -93,6 +93,7 @@ module output_send(
                 end
             end else begin
                 cnt <= cnt;
+                uart_send_en <= 1'b0;
             end
         end
     end
