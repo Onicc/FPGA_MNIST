@@ -21,9 +21,19 @@ module mnistv1(
     wire input_vld;
     wire [7:0] input_din;
 
-    img u_img(
+    wire rst_sync;
+
+    // 异步复位，同步释放
+    sync_rst u_sync_rst(
         .clk(clk),
         .rst_n(rst_n),
+        
+        .rst_sync(rst_sync)
+    );
+
+    img u_img(
+        .clk(clk),
+        .rst_n(rst_sync),
         .start(start_flag),
         // .start(key_0),
 
@@ -38,7 +48,7 @@ module mnistv1(
 
     mnist u_mnist(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst_n(rst_sync),
         .ce(1'b1),
         .input_vld(input_vld),
         .input_din(input_din),
@@ -51,14 +61,14 @@ module mnistv1(
     // 输出验证显示模块
     output_led u_output_led(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst_n(rst_sync),
         .din(conv_dout),
         .dout(led_0)
     );
 
     start_key u_start_key(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst_n(rst_sync),
         .din(key_0),
         .dout_led(led_1),
         .dout_start(start_flag)
@@ -66,10 +76,17 @@ module mnistv1(
 
     output_send u_output_send(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst_n(rst_sync),
         .model_ouput(conv_dout),
 
         .uart_txd(uart_txd)
     );
+
+    // img_rom_send u_img_rom_send(
+    //     .clk(clk),
+    //     .rst_n(rst_n),
+    //     .start(start_flag),
+    //     .uart_txd(uart_txd)
+    // );
 
 endmodule

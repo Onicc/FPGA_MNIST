@@ -35,7 +35,7 @@ module uart_send(
     assign en_flag = (~uart_en_d1) & uart_en_d0;
 
     //对发送使能信号uart_en延迟两个时钟周期
-    always @(posedge sys_clk or negedge sys_rst_n) begin         
+    always @(posedge sys_clk) begin         
         if (!sys_rst_n) begin
             uart_en_d0 <= 1'b0;                                  
             uart_en_d1 <= 1'b0;
@@ -47,7 +47,7 @@ module uart_send(
     end
 
     //当脉冲信号en_flag到达时,寄存待发送的数据，并进入发送过程          
-    always @(posedge sys_clk or negedge sys_rst_n) begin         
+    always @(posedge sys_clk) begin         
         if (!sys_rst_n) begin                                  
             tx_flag <= 1'b0;
             tx_data <= 8'd0;
@@ -68,7 +68,7 @@ module uart_send(
     end
 
     //进入发送过程后，启动系统时钟计数器
-    always @(posedge sys_clk or negedge sys_rst_n) begin         
+    always @(posedge sys_clk) begin         
         if (!sys_rst_n)                             
             clk_cnt <= 16'd0;                                  
         else if (tx_flag) begin                 //处于发送过程
@@ -82,7 +82,7 @@ module uart_send(
     end
 
     //进入发送过程后，启动发送数据计数器
-    always @(posedge sys_clk or negedge sys_rst_n) begin         
+    always @(posedge sys_clk) begin         
         if (!sys_rst_n)                             
             tx_cnt <= 4'd0;
         else if (tx_flag) begin                 //处于发送过程
@@ -96,7 +96,7 @@ module uart_send(
     end
 
     //根据发送数据计数器来给uart发送端口赋值
-    always @(posedge sys_clk or negedge sys_rst_n) begin        
+    always @(posedge sys_clk) begin        
         if (!sys_rst_n)  
             uart_txd <= 1'b1;        
         else if (tx_flag)

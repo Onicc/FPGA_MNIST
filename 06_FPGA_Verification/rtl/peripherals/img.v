@@ -22,7 +22,7 @@ module img # (
     );
 
     // start信号检测
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             working <= 1'b0;
         end else if(start == 1'b1) begin
@@ -36,7 +36,7 @@ module img # (
 
     // 计数9轮
     reg [3:0] cnt;
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             cnt <= 0;
         end else begin
@@ -49,7 +49,7 @@ module img # (
     end
 
     // addr
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             rom_addr <= 0;
         end else begin
@@ -64,7 +64,7 @@ module img # (
     end
 
     // done信号
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             rom_done <= 1'b0;
         end else begin
@@ -77,7 +77,7 @@ module img # (
     end
 
     // val信号
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             dout_vld <= 0;
         end else begin
@@ -90,7 +90,7 @@ module img # (
     end
 
     // shuchu1
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             img_dout <= 0;
         end else begin

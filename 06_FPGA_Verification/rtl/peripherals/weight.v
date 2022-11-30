@@ -44,7 +44,7 @@ module weight # (
     );
 
     // addr
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             rom_addr <= 0;
         end else begin
@@ -57,7 +57,7 @@ module weight # (
     end
 
     // done信号
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             done <= 1'b0;
         end else begin
@@ -72,7 +72,7 @@ module weight # (
     // ROM的latency为2个clk，将rom_addr延时同步rom_douta
     reg [9:0] rom_addr_d0;
     reg [9:0] rom_addr_d1;
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if(!rst_n) begin
             rom_addr_d0 <= 0;
             rom_addr_d1 <= 0;
@@ -83,7 +83,7 @@ module weight # (
     end
 
     // auto genaration
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_weight_din_1 <= 0;
         end else begin
@@ -94,7 +94,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_weight_din_1 <= 0;
         end else begin
@@ -105,7 +105,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_weight_din_2 <= 0;
         end else begin
@@ -116,7 +116,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_weight_din_2 <= 0;
         end else begin
@@ -127,7 +127,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_weight_din_3 <= 0;
         end else begin
@@ -138,7 +138,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_weight_din_3 <= 0;
         end else begin
@@ -149,7 +149,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_weight_din_4 <= 0;
         end else begin
@@ -160,7 +160,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_weight_din_4 <= 0;
         end else begin
@@ -171,7 +171,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_bias_din_1 <= 0;
         end else begin
@@ -182,7 +182,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_bias_din_1 <= 0;
         end else begin
@@ -193,7 +193,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_bias_din_2 <= 0;
         end else begin
@@ -204,7 +204,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_bias_din_2 <= 0;
         end else begin
@@ -215,7 +215,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_bias_din_3 <= 0;
         end else begin
@@ -226,7 +226,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_bias_din_3 <= 0;
         end else begin
@@ -237,7 +237,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_bias_din_4 <= 0;
         end else begin
@@ -248,7 +248,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_bias_din_4 <= 0;
         end else begin
@@ -259,7 +259,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_shift_din_1 <= 0;
         end else begin
@@ -270,7 +270,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_shift_din_1 <= 0;
         end else begin
@@ -281,7 +281,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_shift_din_2 <= 0;
         end else begin
@@ -292,7 +292,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_shift_din_2 <= 0;
         end else begin
@@ -303,7 +303,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_shift_din_3 <= 0;
         end else begin
@@ -314,7 +314,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_shift_din_3 <= 0;
         end else begin
@@ -325,7 +325,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             dconv_shift_din_4 <= 0;
         end else begin
@@ -336,7 +336,7 @@ module weight # (
             end
         end
     end
-    always @ (posedge clk or negedge rst_n) begin
+    always @ (posedge clk) begin
         if (!rst_n) begin
             pconv_shift_din_4 <= 0;
         end else begin

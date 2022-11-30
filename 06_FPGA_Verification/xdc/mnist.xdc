@@ -11,6 +11,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports led_1]
 set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
 set_property IOSTANDARD LVCMOS33 [get_ports uart_txd]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets rst_n_IBUF]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets rst_n_IBUF]
 create_clock -name clk -period 20 [get_ports clk]
 
