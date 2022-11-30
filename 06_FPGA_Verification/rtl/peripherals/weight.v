@@ -1,6 +1,6 @@
 
 module weight # (
-    parameter TOTAL_BYTES = 715
+    parameter TOTAL_BYTES = 529
     )(
     input wire clk,
     input wire rst_n,

@@ -89,4 +89,11 @@ module mnistv1(
     //     .uart_txd(uart_txd)
     // );
 
+    // weight_rom_send u_weight_rom_send(
+    //     .clk(clk),
+    //     .rst_n(rst_n),
+    //     .start(start_flag),
+    //     .uart_txd(uart_txd)
+    // );
+
 endmodule
