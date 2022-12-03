@@ -161,10 +161,10 @@ module mnist#(
     assign conv_dout_vld = conv_dout_vld_4;
     assign conv_dout_end = conv_dout_end_4;
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("mnist.vcd");
-    //     $dumpvars(1, mnist);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("mnist.vcd");
+        $dumpvars(1, mnist);
+    end
 
 endmodule

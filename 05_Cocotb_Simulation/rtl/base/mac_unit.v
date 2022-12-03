@@ -111,10 +111,10 @@ module mac_unit #(
         end
     end
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("mac_unit.vcd");
-    //     $dumpvars(1, mac_unit);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("mac_unit.vcd");
+        $dumpvars(1, mac_unit);
+    end
 
 endmodule

@@ -9,7 +9,7 @@ module queue_reg #(
     input wire input_vld,
     input wire read_flag,
     input wire [width-1:0] din,
-    output wire [width-1:0] dout
+    output reg [width-1:0] dout
 );
 
     // block ram
@@ -17,13 +17,29 @@ module queue_reg #(
     reg [width*depth-1:0] qr;
     reg [31:0] raddr;
 
-    assign dout = (read_flag==1'b1)? qr[width*raddr-1 -: width]:dout;   // vivado simulation
-    // assign dout = (read_flag==1'b1)? qr[width*(raddr+1)-1 -: width]:dout;    // quata simulation
+    // assign dout = (read_flag==1'b1)? qr[width*raddr-1 -: width]:dout;   // vivado simulation
+    // // assign dout = (read_flag==1'b1)? qr[width*(raddr+1)-1 -: width]:dout;    // quata simulation
+
 
     always@(posedge clk) begin
-        if(input_vld) begin
-            qr = qr << width;
-            qr[width-1:0] = din;
+        if(rst == 1'b0) begin
+            dout <= 0;
+        end else begin
+            if(read_flag == 1'b1) begin
+                dout <= qr[width*raddr-1 -: width];
+            end else begin
+                dout <= dout;
+            end
+        end
+    end
+
+    always@(posedge clk) begin
+        if(rst == 1'b0) begin
+            qr <= 0;
+        end else if(input_vld) begin
+            // qr <= qr << width;
+            // qr[width-1:0] <= din;
+            qr <= {qr[width*(depth-1)-1:0], din};
         end else begin
             qr <= qr;
         end

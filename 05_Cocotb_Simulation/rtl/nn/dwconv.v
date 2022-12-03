@@ -85,10 +85,10 @@ module dwconv#(
     assign conv_dout_vld = pconv_dout_vld;
     assign conv_dout_end = pconv_dout_end;
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("dwconv.vcd");
-    //     $dumpvars(1, dwconv);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("dwconv.vcd");
+        $dumpvars(1, dwconv);
+    end
 
 endmodule

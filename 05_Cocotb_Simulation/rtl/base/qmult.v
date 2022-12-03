@@ -67,10 +67,10 @@ module qmult#(
         end
     end
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("qmult.vcd");
-    //     $dumpvars(1, qmult);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("qmult.vcd");
+        $dumpvars(1, qmult);
+    end
 
 endmodule

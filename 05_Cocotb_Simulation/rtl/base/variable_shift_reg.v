@@ -33,10 +33,10 @@ module variable_shift_reg #(
         end
     end
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("variable_shift_reg.vcd");
-    //     $dumpvars(1, variable_shift_reg);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("variable_shift_reg.vcd");
+        $dumpvars(1, variable_shift_reg);
+    end
 
 endmodule

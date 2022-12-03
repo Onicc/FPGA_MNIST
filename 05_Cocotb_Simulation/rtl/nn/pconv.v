@@ -85,10 +85,10 @@
         end
     end
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("pconv.vcd");
-    //     $dumpvars(1, pconv);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("pconv.vcd");
+        $dumpvars(1, pconv);
+    end
 
 endmodule

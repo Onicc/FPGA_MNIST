@@ -111,11 +111,11 @@ module padding#(
 		end
 	end
 
-	// // Dump waves
-	// initial begin
-	// 	$dumpfile("padding.vcd");
-	// 	$dumpvars(1, padding);
-	// end
+	// Dump waves
+	initial begin
+		$dumpfile("padding.vcd");
+		$dumpvars(1, padding);
+	end
 
 
 endmodule

@@ -174,10 +174,10 @@
         end
     end
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("conv_unit.vcd");
-    //     $dumpvars(1, conv_unit);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("conv_unit.vcd");
+        $dumpvars(1, conv_unit);
+    end
 
 endmodule

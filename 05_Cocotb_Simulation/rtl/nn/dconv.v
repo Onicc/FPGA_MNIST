@@ -72,10 +72,10 @@
         end
     endgenerate
 
-    // // Dump waves
-    // initial begin
-    //     $dumpfile("dconv.vcd");
-    //     $dumpvars(1, dconv);
-    // end
+    // Dump waves
+    initial begin
+        $dumpfile("dconv.vcd");
+        $dumpvars(1, dconv);
+    end
 
 endmodule

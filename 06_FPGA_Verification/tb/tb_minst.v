@@ -13,9 +13,13 @@ module tb_minst();
     //信号初始化
     initial begin
         sys_clk = 1'b0;
-        sys_rst_n = 1'b0;
+        sys_rst_n = 1'b1;
         key_0 = 1'b1;
-        #100
+
+        #2000000
+
+        sys_rst_n = 1'b0;
+        #20
         sys_rst_n = 1'b1;
 
         #100000

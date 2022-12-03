@@ -82,18 +82,19 @@ module mnistv1(
         .uart_txd(uart_txd)
     );
 
-    // img_rom_send u_img_rom_send(
-    //     .clk(clk),
-    //     .rst_n(rst_n),
-    //     .start(start_flag),
-    //     .uart_txd(uart_txd)
-    // );
+    // input_vld 1bit
+    // input_din 8bit
+    // conv_dout_vld 1bit
+    // conv_dout  80bit
+    ila_0 u_ila_0 (
+        .clk(clk), // input wire clk
 
-    // weight_rom_send u_weight_rom_send(
-    //     .clk(clk),
-    //     .rst_n(rst_n),
-    //     .start(start_flag),
-    //     .uart_txd(uart_txd)
-    // );
+
+        .probe0(u_mnist.dut_dwconv1.padding_dout_vld), // input wire [0:0]  probe0  
+        .probe1(u_mnist.dut_dwconv1.padding_dout), // input wire [7:0]  probe1 
+        .probe2(u_mnist.dut_dwconv1.dconv_dout_vld), // input wire [0:0]  probe2 
+        .probe3(u_mnist.dut_dwconv1.dconv_dout) // input wire [7:0]  probe3
+    );
+
 
 endmodule
