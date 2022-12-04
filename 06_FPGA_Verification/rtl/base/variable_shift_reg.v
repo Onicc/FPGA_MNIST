@@ -17,10 +17,12 @@ module variable_shift_reg #(
     assign dout_vld = (cnt > depth)? input_vld:0;
     assign dout = (dout_vld)? sr[width-1:0]:dout;
 
-    always@(posedge input_vld) begin
-        // sr <= sr >> width;
-        // sr[(width*(depth+1)-1):width*depth] <= din;
-        sr <= {din, sr[width*(depth+1)-1:width]};
+    always@(posedge input_vld or negedge rst) begin
+        if(rst == 1'b0) begin
+            sr <= 0;
+        end else begin
+            sr <= {din, sr[width*(depth+1)-1:width]};
+        end
     end
 
     always@(posedge input_vld or negedge rst) begin

@@ -35,12 +35,20 @@ module padding#(
 
 	// 从queue中读出需要一个时钟周期，因此需要打一拍
 	always @(posedge clk) begin
-		padding_dout_vld <= dout_vld;
+		if(rst_n == 1'b0) begin
+			padding_dout_vld <= 1'b0;
+		end else begin
+			padding_dout_vld <= dout_vld;
+		end
 	end
 
 	// 从queue中读出需要一个时钟周期，因此需要打一拍
 	always @(posedge clk) begin
-		read_queue_d0 <= read_queue;
+		if(rst_n == 1'b0) begin
+			read_queue_d0 <= 1'b0;
+		end else begin
+			read_queue_d0 <= read_queue;
+		end
 	end
 
 	always @(posedge clk) begin
