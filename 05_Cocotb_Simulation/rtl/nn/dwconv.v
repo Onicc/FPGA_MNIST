@@ -32,7 +32,7 @@ module dwconv#(
     wire padding_dout_end;
 
     // 让他在修正的时候改变 不修正的时候保留原始值
-    assign padding_temp = (padding_dout_vld == 1'b1)? padding_dout:padding_temp;
+    // assign padding_temp = (padding_dout_vld == 1'b1)? padding_dout:padding_temp;
 
     padding #(.N(N), .CHANNEL(INPUT_CHANNEL), .SIZE(INPUT_SIZE), .PADDING(PADDING)) dut_padding(
         .clk(clk),
@@ -54,7 +54,7 @@ module dwconv#(
         .rst_n(rst_n),
         .ce(ce),
         .input_vld(padding_dout_vld),
-        .input_din(padding_temp),
+        .input_din(padding_dout),
         .weight_din(dconv_weight_din),
         .bias_din(dconv_bias_din),
         .shift_din(dconv_shift_din),
