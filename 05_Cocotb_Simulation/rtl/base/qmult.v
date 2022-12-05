@@ -63,7 +63,7 @@ module qmult#(
                 product_dout <= {{(32-2*N){product_working[2*N-1]}}, product_working[2*N-1:0]};
             end
         end else if (product_dout_vld) begin
-            product_dout_vld = 1'b0;
+            product_dout_vld <= 1'b0;
         end
     end
 

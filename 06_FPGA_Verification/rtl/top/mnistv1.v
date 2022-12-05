@@ -94,22 +94,39 @@ module mnistv1(
     //     .probe5(u_mnist.dut_dwconv1.dconv_dout), // input wire [7:0]  probe5 
     //     .probe6(u_mnist.dut_dwconv1.pconv_dout_vld), // input wire [0:0]  probe6 
     //     .probe7(u_mnist.dut_dwconv1.pconv_dout) // input wire [47:0]  probe7
-    //     .probe8(u_mnist.dut_dwconv1.dut_dconv.conv_unit_loop[0].dut_conv_unit.MAC[0].genblk1.mac3.product), // input wire [15:0]  probe8 
-    //     .probe9(u_mnist.dut_dwconv1.dut_dconv.conv_unit_loop[0].dut_conv_unit.MAC[1].mac3.product), // input wire [15:0]  probe9 
-    //     .probe10(u_mnist.dut_dwconv1.dut_dconv.conv_unit_loop[0].dut_conv_unit.MAC[2].mac3.product), // input wire [15:0]  probe10 
-    //     .probe11(u_mnist.dut_dwconv1.dut_dconv.conv_unit_loop[0].dut_conv_unit.MAC[3].mac3.product), // input wire [15:0]  probe11 
     // );
+
+    ila_1 u_ila_1 (
+        .clk(clk), // input wire clk
+
+
+        .probe0(u_mnist.dut_dwconv2.input_vld), // input wire [0:0]  probe0  
+        .probe1(u_mnist.dut_dwconv2.input_din), // input wire [47:0]  probe1 
+        .probe2(u_mnist.dut_dwconv2.padding_dout_vld), // input wire [0:0]  probe2 
+        .probe3(u_mnist.dut_dwconv2.padding_dout), // input wire [47:0]  probe3 
+        .probe4(u_mnist.dut_dwconv2.dconv_dout_vld), // input wire [0:0]  probe4 
+        .probe5(u_mnist.dut_dwconv2.dconv_dout) // input wire [47:0]  probe5
+    );
 
     // ila_1 u_ila_1 (
     //     .clk(clk), // input wire clk
 
 
-    //     .probe0(u_mnist.dconv_weight_din_1), // input wire [71:0]  probe0  
-    //     .probe1(u_mnist.dconv_bias_din_1), // input wire [31:0]  probe1 
-    //     .probe2(u_mnist.dconv_shift_din_1), // input wire [4:0]  probe2 
-    //     .probe3(u_mnist.pconv_weight_din_1), // input wire [47:0]  probe3 
-    //     .probe4(u_mnist.pconv_bias_din_1), // input wire [191:0]  probe4 
-    //     .probe5(u_mnist.pconv_shift_din_1) // input wire [29:0]  probe5
+    //     .probe0(u_mnist.dut_dwconv3.input_vld), // input wire [0:0]  probe0  
+    //     .probe1(u_mnist.dut_dwconv3.input_din), // input wire [47:0]  probe1 
+    //     .probe2(u_mnist.dut_dwconv3.padding_dout_vld), // input wire [0:0]  probe2 
+    //     .probe3(u_mnist.dut_dwconv3.padding_dout), // input wire [47:0]  probe3 
+    //     .probe4(u_mnist.dut_dwconv3.dconv_dout_vld), // input wire [0:0]  probe4 
+    //     .probe5(u_mnist.dut_dwconv3.dconv_dout) // input wire [47:0]  probe5
+    // );
+
+    // ila_param_3 u_ila_param_3 (
+    //     .clk(clk), // input wire clk
+
+
+    //     .probe0(u_mnist.dconv_weight_din_3), // input wire [431:0]  probe0  
+    //     .probe1(u_mnist.dconv_bias_din_3), // input wire [191:0]  probe1 
+    //     .probe2(u_mnist.dconv_shift_din_3) // input wire [29:0]  probe2
     // );
 
 endmodule

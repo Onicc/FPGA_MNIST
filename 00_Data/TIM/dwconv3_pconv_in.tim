@@ -1,0 +1,49 @@
+Timing Analyzer Settings
+     Time_Scale:        1.000000E-12
+     Time_Per_Division: 3.240500E+07
+     NumberDivisions:   10
+     Start_Time:        0.0
+     End_Time:          324050000.0
+Digital_Signal
+     Position:          1
+     Height:            24
+     Space_Above:       24
+     Name:              input_vld
+     Start_State:       0
+     Number_Edges:      12
+     Rise_Time:         0.2
+     Fall_Time:         0.2
+          Edge:               106035000.0 1
+          Edge:               106045000.0 0
+          Edge:               111355000.0 0
+          Edge:               113035000.0 1
+          Edge:               113045000.0 0
+          Edge:               118775000.0 0
+          Edge:               122275000.0 1
+          Edge:               122285000.0 0
+          Edge:               122415000.0 0
+          Edge:               122695000.0 1
+          Edge:               122705000.0 0
+          Edge:               122835000.0 0
+Digital_Bus
+     Position:          2
+     Height:            24
+     Space_Above:       24
+     Name:              input_din[47:0]
+     Start_State:       000000000000
+     State_Format:      Hex
+     Number_Edges:      12
+     Rise_Time:         0.2
+     Fall_Time:         0.2
+          Edge:               106035000.0 1A001A0C0E0E
+          Edge:               106045000.0 000000000000
+          Edge:               111355000.0 000000000000
+          Edge:               113035000.0 190D00040C28
+          Edge:               113045000.0 000000000000
+          Edge:               118775000.0 000000000000
+          Edge:               122275000.0 2E1E26000000
+          Edge:               122285000.0 000000000000
+          Edge:               122415000.0 000000000000
+          Edge:               122695000.0 15274A42000F
+          Edge:               122705000.0 000000000000
+          Edge:               122835000.0 000000000000
