@@ -67,7 +67,7 @@ def bin2hex(value, bitwidth):
     return hex_value
 
 def bin2hex_low_first(value, bitwidth):
-    """二进制字符串转十六进制的字符串, 自动从后面补0
+    """二进制字符串转十六进制的字符串, 自动从高位补0, 地位有效
     """
     bin_value = value
     hex_value = hex(int(bin_value, 2))[2:]

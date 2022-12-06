@@ -10,7 +10,7 @@ module img # (
     output reg dout_vld
 );
     reg working;
-    reg rom_done;
+    // reg rom_done;
     reg [9:0] rom_addr;
     wire [7:0] rom_dout;
 
@@ -63,18 +63,18 @@ module img # (
         end
     end
 
-    // done信号
-    always @ (posedge clk) begin
-        if(!rst_n) begin
-            rom_done <= 1'b0;
-        end else begin
-            if(rom_addr < TOTAL_BYTES) begin
-                rom_done <= 1'b0;
-            end else begin
-                rom_done <= 1'b1;
-            end
-        end
-    end
+    // // done信号
+    // always @ (posedge clk) begin
+    //     if(!rst_n) begin
+    //         rom_done <= 1'b0;
+    //     end else begin
+    //         if(rom_addr < TOTAL_BYTES) begin
+    //             rom_done <= 1'b0;
+    //         end else begin
+    //             rom_done <= 1'b1;
+    //         end
+    //     end
+    // end
 
     // val信号
     always @ (posedge clk) begin
