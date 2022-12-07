@@ -73,7 +73,7 @@ class Conv2dDrive(object):
     """模型驱动,负责控制模型的输入输出及验证
 
     """
-    def __init__(self, clk, rst_n, ce, input_vld, input_din, 
+    def __init__(self, clk, rst_n, input_vld, input_din, 
                 dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
                 dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
                 dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
@@ -83,7 +83,7 @@ class Conv2dDrive(object):
         self.clk = clk
         self.rst_n = rst_n
         # input
-        self.ce = ce
+        # self.ce = ce
         self.input_vld = input_vld
         self.input_din = input_din
         self.dconv_weight_din_1 = dconv_weight_din_1
@@ -118,7 +118,7 @@ class Conv2dDrive(object):
         self.conv_dout_vld = conv_dout_vld
         self.conv_dout_end = conv_dout_end
         # input init
-        self.ce.setimmediatevalue(1)
+        # self.ce.setimmediatevalue(1)
         self.input_vld.setimmediatevalue(0)
         self.input_din.setimmediatevalue(0)
 
@@ -264,7 +264,7 @@ class Conv2dDrive(object):
 class conv2d_tb(object):
     def __init__(self, dut):
         self.dut = dut
-        self.model_drive = Conv2dDrive(dut.clk, dut.rst_n, dut.ce, dut.input_vld, dut.input_din, 
+        self.model_drive = Conv2dDrive(dut.clk, dut.rst_n, dut.input_vld, dut.input_din, 
             dut.dconv_weight_din_1, dut.pconv_weight_din_1, dut.dconv_bias_din_1, dut.pconv_bias_din_1, dut.dconv_shift_din_1, dut.pconv_shift_din_1, \
             dut.dconv_weight_din_2, dut.pconv_weight_din_2, dut.dconv_bias_din_2, dut.pconv_bias_din_2, dut.dconv_shift_din_2, dut.pconv_shift_din_2, \
             dut.dconv_weight_din_3, dut.pconv_weight_din_3, dut.dconv_bias_din_3, dut.pconv_bias_din_3, dut.dconv_shift_din_3, dut.pconv_shift_din_3, \

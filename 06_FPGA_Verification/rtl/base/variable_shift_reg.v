@@ -13,9 +13,6 @@ module variable_shift_reg #(
     reg [width*(depth+1)-1:0] sr;   // /rtl/base/variable_shift_reg.v(25): (vopt-3373) Range of part-select [-1:32] into 'sr' [31:0] is reversed.
     reg [32:0] cnt;
 
-    // assign dout_vld = (cnt > depth)? input_vld:0;
-    // assign dout = (dout_vld)? sr[width-1:0]:dout;
-
     always@(posedge clk) begin
         if(rst == 1'b0) begin
             sr <= 0;

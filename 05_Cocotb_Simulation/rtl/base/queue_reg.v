@@ -5,7 +5,6 @@ module queue_reg #(
     )(
     input wire clk,
     input wire rst,
-    input wire ce,
     input wire input_vld,
     input wire read_flag,
     input wire [width-1:0] din,
@@ -16,6 +15,10 @@ module queue_reg #(
     // 改为时序逻辑电路，读信号进来后需等一个时钟周期才能输出正确的数据
     reg [width*depth-1:0] qr;
     reg [31:0] raddr;
+
+    // assign dout = (read_flag==1'b1)? qr[width*raddr-1 -: width]:dout;   // vivado simulation
+    // // assign dout = (read_flag==1'b1)? qr[width*(raddr+1)-1 -: width]:dout;    // quata simulation
+
 
     always@(posedge clk) begin
         if(rst == 1'b0) begin

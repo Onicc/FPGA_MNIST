@@ -36,7 +36,6 @@
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [INPUT_CHANNEL*N-1:0] input_din,
     input wire [INPUT_CHANNEL*(KERNEL_SIZE*KERNEL_SIZE)*N-1:0] weight_din,
@@ -58,7 +57,6 @@
         for(i = 0; i < INPUT_CHANNEL; i = i+1) begin
             conv_unit #(.N(N), .INPUT_SIZE(INPUT_SIZE), .KERNEL_SIZE(KERNEL_SIZE), .STRIDE(STRIDE), .PADDING(PADDING), .DILATION(DILATION)) dut_conv_unit(
                 .clk(clk), 
-                .ce(ce), 
                 .rst_n(rst_n),
                 .input_vld(input_vld),
                 .input_din(input_din[N*(i+1)-1:N*i]), 

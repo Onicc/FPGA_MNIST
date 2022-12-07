@@ -38,7 +38,6 @@ module mnist#(
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [INPUT_CHANNEL_1*N-1:0] input_din,
 
@@ -78,10 +77,10 @@ module mnist#(
     wire [OUTPUT_CHANNEL_1*N-1:0] conv_dout_1;
     wire conv_dout_vld_1;
     wire conv_dout_end_1;
-    dwconv_c1 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_1), .INPUT_SIZE(INPUT_SIZE_1), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_1), .OUTPUT_SIZE(OUTPUT_SIZE_1), .KERNEL_SIZE(KERNEL_SIZE_1), .STRIDE(STRIDE_1), .PADDING(PADDING_1), .DILATION(DILATION)) dut_dwconv1 (
+    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_1), .INPUT_SIZE(INPUT_SIZE_1), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_1), .OUTPUT_SIZE(OUTPUT_SIZE_1), .KERNEL_SIZE(KERNEL_SIZE_1), .STRIDE(STRIDE_1), .PADDING(PADDING_1), .DILATION(DILATION)) dut_dwconv1 (
+    // dwconv_c1 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_1), .INPUT_SIZE(INPUT_SIZE_1), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_1), .OUTPUT_SIZE(OUTPUT_SIZE_1), .KERNEL_SIZE(KERNEL_SIZE_1), .STRIDE(STRIDE_1), .PADDING(PADDING_1), .DILATION(DILATION)) dut_dwconv1 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(input_vld),
         .input_din(input_din),
         .dconv_weight_din(dconv_weight_din_1),
@@ -98,10 +97,10 @@ module mnist#(
     wire [OUTPUT_CHANNEL_2*N-1:0] conv_dout_2;
     wire conv_dout_vld_2;
     wire conv_dout_end_2;
-    dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_2), .INPUT_SIZE(INPUT_SIZE_2), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_2), .OUTPUT_SIZE(OUTPUT_SIZE_2), .KERNEL_SIZE(KERNEL_SIZE_2), .STRIDE(STRIDE_2), .PADDING(PADDING_2), .DILATION(DILATION)) dut_dwconv2 (
+    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_2), .INPUT_SIZE(INPUT_SIZE_2), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_2), .OUTPUT_SIZE(OUTPUT_SIZE_2), .KERNEL_SIZE(KERNEL_SIZE_2), .STRIDE(STRIDE_2), .PADDING(PADDING_2), .DILATION(DILATION)) dut_dwconv2 (
+    // dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_2), .INPUT_SIZE(INPUT_SIZE_2), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_2), .OUTPUT_SIZE(OUTPUT_SIZE_2), .KERNEL_SIZE(KERNEL_SIZE_2), .STRIDE(STRIDE_2), .PADDING(PADDING_2), .DILATION(DILATION)) dut_dwconv2 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_1),
         .input_din(conv_dout_1),
         .dconv_weight_din(dconv_weight_din_2),
@@ -119,10 +118,10 @@ module mnist#(
     wire [OUTPUT_CHANNEL_3*N-1:0] conv_dout_3;
     wire conv_dout_vld_3;
     wire conv_dout_end_3;
-    dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_3), .INPUT_SIZE(INPUT_SIZE_3), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_3), .OUTPUT_SIZE(OUTPUT_SIZE_3), .KERNEL_SIZE(KERNEL_SIZE_3), .STRIDE(STRIDE_3), .PADDING(PADDING_3), .DILATION(DILATION)) dut_dwconv3 (
+    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_3), .INPUT_SIZE(INPUT_SIZE_3), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_3), .OUTPUT_SIZE(OUTPUT_SIZE_3), .KERNEL_SIZE(KERNEL_SIZE_3), .STRIDE(STRIDE_3), .PADDING(PADDING_3), .DILATION(DILATION)) dut_dwconv3 (
+    // dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_3), .INPUT_SIZE(INPUT_SIZE_3), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_3), .OUTPUT_SIZE(OUTPUT_SIZE_3), .KERNEL_SIZE(KERNEL_SIZE_3), .STRIDE(STRIDE_3), .PADDING(PADDING_3), .DILATION(DILATION)) dut_dwconv3 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_2),
         .input_din(conv_dout_2),
         .dconv_weight_din(dconv_weight_din_3),
@@ -139,10 +138,10 @@ module mnist#(
     wire [OUTPUT_CHANNEL_4*N-1:0] conv_dout_4;
     wire conv_dout_vld_4;
     wire conv_dout_end_4;
-    dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
+    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
+    // dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_3),
         .input_din(conv_dout_3),
         .dconv_weight_din(dconv_weight_din_4),

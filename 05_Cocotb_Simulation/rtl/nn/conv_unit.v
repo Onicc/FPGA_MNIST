@@ -34,7 +34,6 @@
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [N-1:0] input_din,
     input wire [(KERNEL_SIZE*KERNEL_SIZE)*N-1:0] weight_din,
@@ -78,7 +77,6 @@
                     mac_unit #(.N(N)) mac1(
                         .clk(clk),
                         .rst_n(rst_n),
-                        .ce(ce),
                         .multiplicand_vld(input_vld),
                         .addend_vld(tmp_vld[i]),
                         .multiplicand_din(input_din),
@@ -93,7 +91,6 @@
                     mac_unit #(.N(N)) mac2(                    
                         .clk(clk), 
                         .rst_n(rst_n),
-                        .ce(ce),
                         .multiplicand_vld(input_vld),
                         .addend_vld(tmp_vld[i]),
                         .multiplicand_din(input_din),
@@ -106,7 +103,6 @@
                     variable_shift_reg #(.width(32),.depth((INPUT_SIZE-KERNEL_SIZE))) SR (
                         .clk(clk),
                         .rst(rst_n),
-                        .ce(ce),
                         .input_vld(tmp2_vld),
                         .din(tmp2),
                         .dout(tmp[i+1]),
@@ -117,7 +113,6 @@
                 mac_unit #(.N(N)) mac3(                    
                     .clk(clk), 
                     .rst_n(rst_n),
-                    .ce(ce),
                     .multiplicand_vld(input_vld),
                     .addend_vld(tmp_vld[i]),
                     .multiplicand_din(input_din),

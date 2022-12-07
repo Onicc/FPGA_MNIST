@@ -23,7 +23,7 @@ module qmult#(
     assign booth_code = multiplier_temp[1:0];
     assign product_stop = (~|multiplier_temp)||(&multiplier_temp);
 
-    always @( posedge clk ) begin
+    always @(posedge clk) begin
         if(rst_n == 1'b0) begin
             // product_state <= 1'b0;
             multiplicand_temp <= 0;
