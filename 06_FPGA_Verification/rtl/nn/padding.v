@@ -7,7 +7,6 @@ module padding#(
 	)(
 	input wire clk,
 	input wire rst_n,
-	input wire ce,
 	input wire input_vld,
 	input wire [CHANNEL*N-1:0] input_din,
 	output wire [CHANNEL*N-1:0] padding_dout,
@@ -26,7 +25,6 @@ module padding#(
 	queue_reg #(.width(CHANNEL*N), .depth(3*SIZE-2)) dut_queue_reg(
 		.clk(clk),
 		.rst(rst_n),
-		.ce(ce),
 		.input_vld(input_vld),
 		.read_flag(read_queue),
 		.din(input_din),
@@ -52,7 +50,7 @@ module padding#(
 	end
 
 	always @(posedge clk) begin
-		if(rst_n == 1'b0 || ce == 1'b0) begin
+		if(rst_n == 1'b0) begin
 			cnt <= 0;
 			cnt_line <= 0;
 			cnt_gap <= 0;
@@ -61,7 +59,7 @@ module padding#(
 			// padding_dout <= 0;
 			dout_vld <= 0;
 			padding_dout_end <= 1'b1;
-		end else if(ce == 1'b1) begin
+		end else begin
 			if(cnt < SIZE*SIZE) begin
 				if(input_vld == 1'b1) begin
 					padding_dout_end <= 1'b0;

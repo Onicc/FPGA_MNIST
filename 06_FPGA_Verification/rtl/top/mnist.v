@@ -38,7 +38,6 @@ module mnist#(
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [INPUT_CHANNEL_1*N-1:0] input_din,
 
@@ -63,14 +62,14 @@ module mnist#(
     wire [192-1:0] pconv_bias_din_3;
     wire [192-1:0] dconv_bias_din_4;
     wire [320-1:0] pconv_bias_din_4;
-    wire [8-1:0] dconv_shift_din_1;
-    wire [32-1:0] pconv_shift_din_1;
-    wire [32-1:0] dconv_shift_din_2;
-    wire [32-1:0] pconv_shift_din_2;
-    wire [32-1:0] dconv_shift_din_3;
-    wire [32-1:0] pconv_shift_din_3;
-    wire [32-1:0] dconv_shift_din_4;
-    wire [56-1:0] pconv_shift_din_4;
+    wire [8-1:0] dconv_shift_din_1;     // 5
+    wire [32-1:0] pconv_shift_din_1;    // 30
+    wire [32-1:0] dconv_shift_din_2;    // 30
+    wire [32-1:0] pconv_shift_din_2;    // 30
+    wire [32-1:0] dconv_shift_din_3;    // 30
+    wire [32-1:0] pconv_shift_din_3;    // 30
+    wire [32-1:0] dconv_shift_din_4;    // 30
+    wire [56-1:0] pconv_shift_din_4;    // 50
     wire weight_load_done;
     
     weight u_weight (
@@ -109,13 +108,14 @@ module mnist#(
     dwconv_c1 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_1), .INPUT_SIZE(INPUT_SIZE_1), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_1), .OUTPUT_SIZE(OUTPUT_SIZE_1), .KERNEL_SIZE(KERNEL_SIZE_1), .STRIDE(STRIDE_1), .PADDING(PADDING_1), .DILATION(DILATION)) dut_dwconv1 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(input_vld),
         .input_din(input_din),
         .dconv_weight_din(dconv_weight_din_1),
         .pconv_weight_din(pconv_weight_din_1),
         .dconv_bias_din(dconv_bias_din_1),
         .pconv_bias_din(pconv_bias_din_1),
+        // .dconv_shift_din(dconv_shift_din_1[4:0]),
+        // .pconv_shift_din(pconv_shift_din_1[29:0]),
         .dconv_shift_din(dconv_shift_din_1),
         .pconv_shift_din(pconv_shift_din_1),
         .conv_dout(conv_dout_1),
@@ -129,13 +129,14 @@ module mnist#(
     dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_2), .INPUT_SIZE(INPUT_SIZE_2), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_2), .OUTPUT_SIZE(OUTPUT_SIZE_2), .KERNEL_SIZE(KERNEL_SIZE_2), .STRIDE(STRIDE_2), .PADDING(PADDING_2), .DILATION(DILATION)) dut_dwconv2 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_1),
         .input_din(conv_dout_1),
         .dconv_weight_din(dconv_weight_din_2),
         .pconv_weight_din(pconv_weight_din_2),
         .dconv_bias_din(dconv_bias_din_2),
         .pconv_bias_din(pconv_bias_din_2),
+        // .dconv_shift_din(dconv_shift_din_2[29:0]),
+        // .pconv_shift_din(pconv_shift_din_2[29:0]),
         .dconv_shift_din(dconv_shift_din_2),
         .pconv_shift_din(pconv_shift_din_2),
         .conv_dout(conv_dout_2),
@@ -150,13 +151,14 @@ module mnist#(
     dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_3), .INPUT_SIZE(INPUT_SIZE_3), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_3), .OUTPUT_SIZE(OUTPUT_SIZE_3), .KERNEL_SIZE(KERNEL_SIZE_3), .STRIDE(STRIDE_3), .PADDING(PADDING_3), .DILATION(DILATION)) dut_dwconv3 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_2),
         .input_din(conv_dout_2),
         .dconv_weight_din(dconv_weight_din_3),
         .pconv_weight_din(pconv_weight_din_3),
         .dconv_bias_din(dconv_bias_din_3),
         .pconv_bias_din(pconv_bias_din_3),
+        // .dconv_shift_din(dconv_shift_din_3[29:0]),
+        // .pconv_shift_din(pconv_shift_din_3[29:0]),
         .dconv_shift_din(dconv_shift_din_3),
         .pconv_shift_din(pconv_shift_din_3),
         .conv_dout(conv_dout_3),
@@ -170,13 +172,14 @@ module mnist#(
     dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(conv_dout_vld_3),
         .input_din(conv_dout_3),
         .dconv_weight_din(dconv_weight_din_4),
         .pconv_weight_din(pconv_weight_din_4),
         .dconv_bias_din(dconv_bias_din_4),
         .pconv_bias_din(pconv_bias_din_4),
+        // .dconv_shift_din(dconv_shift_din_4[29:0]),
+        // .pconv_shift_din(pconv_shift_din_4[49:0]),
         .dconv_shift_din(dconv_shift_din_4),
         .pconv_shift_din(pconv_shift_din_4),
         .conv_dout(conv_dout_4),

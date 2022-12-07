@@ -12,7 +12,6 @@ module dwconv#(
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [INPUT_CHANNEL*N-1:0] input_din,
     input wire [INPUT_CHANNEL*(KERNEL_SIZE*KERNEL_SIZE)*N-1:0] dconv_weight_din,
@@ -37,7 +36,6 @@ module dwconv#(
     padding #(.N(N), .CHANNEL(INPUT_CHANNEL), .SIZE(INPUT_SIZE), .PADDING(PADDING)) dut_padding(
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(input_vld),
         .input_din(input_din),
         .padding_dout(padding_dout),
@@ -52,7 +50,6 @@ module dwconv#(
     dconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL), .INPUT_SIZE(INPUT_SIZE+2*PADDING), .KERNEL_SIZE(KERNEL_SIZE), .STRIDE(STRIDE), .PADDING(PADDING), .DILATION(DILATION)) dut_dconv(
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(padding_dout_vld),
         .input_din(padding_dout),
         .weight_din(dconv_weight_din),
@@ -70,7 +67,6 @@ module dwconv#(
     pconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL), .INPUT_SIZE(OUTPUT_SIZE), .OUTPUT_CHANNEL(OUTPUT_CHANNEL)) dut_pwconv(
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(dconv_dout_vld),
         .input_din(dconv_dout),
         .weight_din(pconv_weight_din),

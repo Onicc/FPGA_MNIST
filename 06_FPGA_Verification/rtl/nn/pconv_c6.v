@@ -33,7 +33,6 @@
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [6*N-1:0] input_din,
     input wire [6*OUTPUT_CHANNEL*N-1:0] weight_din,
@@ -55,7 +54,6 @@
             pconv_unit_c6 #(.N(N)) u_pconv_unit(
                 .clk(clk),
                 .rst_n(rst_n),
-                .ce(ce),
                 .input_vld(input_vld),
                 .input_din(input_din),
                 .bias_din(bias_din[(i+1)*32-1:i*32]),
@@ -68,10 +66,10 @@
     endgenerate
 
     always @(posedge clk) begin
-        if(rst_n == 1'b0 || ce == 1'b0) begin
+        if(rst_n == 1'b0) begin
             conv_dout_end <= 1'b1;
             cnt <= 1'b0;
-        end else if(ce == 1'b1) begin
+        end else begin
             if(input_vld == 1'b1) begin
                 conv_dout_end <= 1'b0;
             end

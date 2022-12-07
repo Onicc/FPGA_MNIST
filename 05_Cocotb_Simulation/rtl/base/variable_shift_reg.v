@@ -8,29 +8,59 @@ module variable_shift_reg #(
     input wire ce,
     input wire input_vld,
     input wire [width-1:0] din,
-    output wire [width-1:0] dout,
-    output wire dout_vld
+    output reg [width-1:0] dout,
+    output reg dout_vld
 );
-    reg [width*(depth+1)-1:0] sr;   // 比2022.10.28日前版本多了一位，因为在questa仿真的时候sr进来时钟要快一些
+    reg [width*(depth+1)-1:0] sr;   // /rtl/base/variable_shift_reg.v(25): (vopt-3373) Range of part-select [-1:32] into 'sr' [31:0] is reversed.
     reg [32:0] cnt;
 
-    assign dout_vld = (cnt > depth)? input_vld:0;
-    assign dout = (dout_vld)? sr[width-1:0]:dout;
+    // assign dout_vld = (cnt > depth)? input_vld:0;
+    // assign dout = (dout_vld)? sr[width-1:0]:dout;
 
-    always@(posedge input_vld or negedge rst) begin
+    always@(posedge clk) begin
         if(rst == 1'b0) begin
             sr <= 0;
         end else begin
-            sr <= {din, sr[width*(depth+1)-1:width]};
+            if(input_vld == 1'b1) begin
+                sr <= {din, sr[width*(depth+1)-1:width]};
+            end else begin
+                sr <= sr;
+            end
         end
     end
 
-    always@(posedge input_vld or negedge rst) begin
+    always@(posedge clk) begin
         if(rst == 1'b0) begin
             cnt <= 0;
         end else begin
             if(input_vld == 1'b1 && cnt <= depth) begin
                 cnt <= cnt + 1'b1;
+            end else begin
+                cnt <= cnt;
+            end
+        end
+    end
+
+    always@(posedge clk) begin
+        if(rst == 1'b0) begin
+            dout_vld <= 0;
+        end else begin
+            if(cnt >= depth && input_vld == 1'b1) begin
+                dout_vld <= 1'b1;
+            end else begin
+                dout_vld <= 1'b0;
+            end
+        end
+    end
+
+    always@(posedge clk) begin
+        if(rst == 1'b0) begin
+            dout <= 0;
+        end else begin
+            if(cnt >= depth && input_vld == 1'b1) begin
+                dout <= sr[width*2-1:width];
+            end else begin
+                dout <= dout;
             end
         end
     end

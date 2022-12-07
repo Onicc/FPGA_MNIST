@@ -5,7 +5,6 @@ module queue_reg #(
     )(
     input wire clk,
     input wire rst,
-    input wire ce,
     input wire input_vld,
     input wire read_flag,
     input wire [width-1:0] din,

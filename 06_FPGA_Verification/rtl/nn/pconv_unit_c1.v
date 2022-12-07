@@ -30,7 +30,6 @@
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [N-1:0] input_din,
     input wire [N-1:0] weight_din,
@@ -52,7 +51,6 @@
     qmult #(.N(N)) u_mult(
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(input_vld),
         .multiplicand_din(input_din),
         .multiplier_din(weight_din),

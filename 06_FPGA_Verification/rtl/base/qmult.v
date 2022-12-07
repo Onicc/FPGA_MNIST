@@ -3,7 +3,6 @@ module qmult#(
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire input_vld,
     input wire [N-1:0] multiplicand_din,
     input wire [N-1:0] multiplier_din,
@@ -36,7 +35,7 @@ module qmult#(
             product_dout <= 0;
             product_dout_vld <= 1'b0;
             product_end <= 1'b1;
-        end else if(product_end && ce && input_vld) begin
+        end else if(product_end && input_vld) begin
             product_dout_vld <= 1'b0;
             product_end <= 1'b0;
 

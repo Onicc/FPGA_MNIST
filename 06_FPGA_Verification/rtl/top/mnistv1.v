@@ -49,7 +49,6 @@ module mnistv1(
     mnist u_mnist(
         .clk(clk),
         .rst_n(rst_sync),
-        .ce(1'b1),
         .input_vld(input_vld),
         .input_din(input_din),
         .conv_dout(conv_dout),

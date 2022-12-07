@@ -5,7 +5,6 @@ module mac_unit #(
     )(
     input wire clk,
     input wire rst_n,
-    input wire ce,
     input wire multiplicand_vld,
     input wire addend_vld,
     input wire [N-1:0] multiplicand_din,
@@ -26,7 +25,6 @@ module mac_unit #(
     qmult #(.N(N)) u_mult(
         .clk(clk),
         .rst_n(rst_n),
-        .ce(ce),
         .input_vld(addend_temp_vld & multiplicand_temp_vld),
         .multiplicand_din(multiplicand_temp),
         .multiplier_din(multiplier_din),

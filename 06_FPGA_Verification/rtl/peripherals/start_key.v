@@ -15,7 +15,8 @@ module start_key #(
         if(rst_n == 1'b0) begin
             din_flag <= 1'b0;
         end else begin
-            if(din == 1'b0) begin   // 如果按键按下
+            // 如果按键按下
+            if(din == 1'b0) begin
                 din_flag <= 1'b1;
             end else begin
                 din_flag <= 1'b0;
