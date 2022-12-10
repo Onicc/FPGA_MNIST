@@ -10,56 +10,56 @@ using namespace xcen;
 
 int main() {
     std::map<string,string> weight_map;
-    weight_map["b1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b1.xen";
-    weight_map["b2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b2.xen";
-    weight_map["b3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b3.xen";
-    weight_map["b4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b4.xen";
-    weight_map["b5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b5.xen";
-    weight_map["b6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b6.xen";
-    weight_map["b7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b7.xen";
-    weight_map["b8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/b8.xen";
-    weight_map["shift_b1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b1.xen";
-    weight_map["shift_b2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b2.xen";
-    weight_map["shift_b3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b3.xen";
-    weight_map["shift_b4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b4.xen";
-    weight_map["shift_b5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b5.xen";
-    weight_map["shift_b6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b6.xen";
-    weight_map["shift_b7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b7.xen";
-    weight_map["shift_b8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_b8.xen";
-    weight_map["shift_input1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input1.xen";
-    weight_map["shift_input2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input2.xen";
-    weight_map["shift_input3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input3.xen";
-    weight_map["shift_input4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input4.xen";
-    weight_map["shift_input5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input5.xen";
-    weight_map["shift_input6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input6.xen";
-    weight_map["shift_input7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input7.xen";
-    weight_map["shift_input8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_input8.xen";
-    weight_map["shift_io1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io1.xen";
-    weight_map["shift_io2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io2.xen";
-    weight_map["shift_io3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io3.xen";
-    weight_map["shift_io4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io4.xen";
-    weight_map["shift_io5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io5.xen";
-    weight_map["shift_io6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io6.xen";
-    weight_map["shift_io7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io7.xen";
-    weight_map["shift_io8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_io8.xen";
-    weight_map["shift_w1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w1.xen";
-    weight_map["shift_w2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w2.xen";
-    weight_map["shift_w3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w3.xen";
-    weight_map["shift_w4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w4.xen";
-    weight_map["shift_w5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w5.xen";
-    weight_map["shift_w6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w6.xen";
-    weight_map["shift_w7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w7.xen";
-    weight_map["shift_w8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/shift_w8.xen";
-    weight_map["w1"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w1.xen";
-    weight_map["w2"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w2.xen";
-    weight_map["w3"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w3.xen";
-    weight_map["w4"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w4.xen";
-    weight_map["w5"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w5.xen";
-    weight_map["w6"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w6.xen";
-    weight_map["w7"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w7.xen";
-    weight_map["w8"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/Param/xen/w8.xen";
+    weight_map["b1"] = "../../00_Data/Param/xen/b1.xen";
+    weight_map["b2"] = "../../00_Data/Param/xen/b2.xen";
+    weight_map["b3"] = "../../00_Data/Param/xen/b3.xen";
+    weight_map["b4"] = "../../00_Data/Param/xen/b4.xen";
+    weight_map["b5"] = "../../00_Data/Param/xen/b5.xen";
+    weight_map["b6"] = "../../00_Data/Param/xen/b6.xen";
+    weight_map["b7"] = "../../00_Data/Param/xen/b7.xen";
+    weight_map["b8"] = "../../00_Data/Param/xen/b8.xen";
+    weight_map["shift_b1"] = "../../00_Data/Param/xen/shift_b1.xen";
+    weight_map["shift_b2"] = "../../00_Data/Param/xen/shift_b2.xen";
+    weight_map["shift_b3"] = "../../00_Data/Param/xen/shift_b3.xen";
+    weight_map["shift_b4"] = "../../00_Data/Param/xen/shift_b4.xen";
+    weight_map["shift_b5"] = "../../00_Data/Param/xen/shift_b5.xen";
+    weight_map["shift_b6"] = "../../00_Data/Param/xen/shift_b6.xen";
+    weight_map["shift_b7"] = "../../00_Data/Param/xen/shift_b7.xen";
+    weight_map["shift_b8"] = "../../00_Data/Param/xen/shift_b8.xen";
+    weight_map["shift_input1"] = "../../00_Data/Param/xen/shift_input1.xen";
+    weight_map["shift_input2"] = "../../00_Data/Param/xen/shift_input2.xen";
+    weight_map["shift_input3"] = "../../00_Data/Param/xen/shift_input3.xen";
+    weight_map["shift_input4"] = "../../00_Data/Param/xen/shift_input4.xen";
+    weight_map["shift_input5"] = "../../00_Data/Param/xen/shift_input5.xen";
+    weight_map["shift_input6"] = "../../00_Data/Param/xen/shift_input6.xen";
+    weight_map["shift_input7"] = "../../00_Data/Param/xen/shift_input7.xen";
+    weight_map["shift_input8"] = "../../00_Data/Param/xen/shift_input8.xen";
+    weight_map["shift_io1"] = "../../00_Data/Param/xen/shift_io1.xen";
+    weight_map["shift_io2"] = "../../00_Data/Param/xen/shift_io2.xen";
+    weight_map["shift_io3"] = "../../00_Data/Param/xen/shift_io3.xen";
+    weight_map["shift_io4"] = "../../00_Data/Param/xen/shift_io4.xen";
+    weight_map["shift_io5"] = "../../00_Data/Param/xen/shift_io5.xen";
+    weight_map["shift_io6"] = "../../00_Data/Param/xen/shift_io6.xen";
+    weight_map["shift_io7"] = "../../00_Data/Param/xen/shift_io7.xen";
+    weight_map["shift_io8"] = "../../00_Data/Param/xen/shift_io8.xen";
+    weight_map["shift_w1"] = "../../00_Data/Param/xen/shift_w1.xen";
+    weight_map["shift_w2"] = "../../00_Data/Param/xen/shift_w2.xen";
+    weight_map["shift_w3"] = "../../00_Data/Param/xen/shift_w3.xen";
+    weight_map["shift_w4"] = "../../00_Data/Param/xen/shift_w4.xen";
+    weight_map["shift_w5"] = "../../00_Data/Param/xen/shift_w5.xen";
+    weight_map["shift_w6"] = "../../00_Data/Param/xen/shift_w6.xen";
+    weight_map["shift_w7"] = "../../00_Data/Param/xen/shift_w7.xen";
+    weight_map["shift_w8"] = "../../00_Data/Param/xen/shift_w8.xen";
+    weight_map["w1"] = "../../00_Data/Param/xen/w1.xen";
+    weight_map["w2"] = "../../00_Data/Param/xen/w2.xen";
+    weight_map["w3"] = "../../00_Data/Param/xen/w3.xen";
+    weight_map["w4"] = "../../00_Data/Param/xen/w4.xen";
+    weight_map["w5"] = "../../00_Data/Param/xen/w5.xen";
+    weight_map["w6"] = "../../00_Data/Param/xen/w6.xen";
+    weight_map["w7"] = "../../00_Data/Param/xen/w7.xen";
+    weight_map["w8"] = "../../00_Data/Param/xen/w8.xen";
 
-    weight_map["inout_root"] = "/Users/caixc/Documents/Work/Project/IC/NNA/FPGA_MNIST/00_Data/MNIST/xen/";
+    weight_map["inout_root"] = "../../00_Data/MNIST/xen/";
 
 
     Matx<int8_t> w1;
@@ -193,6 +193,11 @@ int main() {
             correct_num++;
         }
         sum_num++;
+
+        if(i == 0) {
+            input.show();
+            conv_8.show();
+        }
     }
     cout << "acc:" << double(correct_num)/double(sum_num) << endl;
 }
