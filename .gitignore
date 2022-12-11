@@ -1,3 +1,6 @@
+# vscode
+*.vscode
+
 # MacOS temporary file
 *.DS_Store 
 

@@ -104,6 +104,16 @@ Matx<xtype> PConv2D_FPGA(const Matx<xtype> &input, const Matx<int> &inout_shift,
     return _input;
 }
 
+template <typename xtype>
+Matx<xtype> Quantization(const Matx<xtype> &input, const Matx<int> &shift) {
+    Matx<xtype> _input;
+    Matx<int> _shift;
+    _input = input;
+    _shift = shift;
+    _input.quantization(_shift);
+    
+    return _input;
+}
 
 template <typename xtype>
 Matx<xtype> Conv2D_PPQ_Test(const Matx<xtype> &input, const Matx<xtype> &inout_scale, const Matx<xtype> &kernel, const Matx<xtype> &kernel_scale, const Matx<xtype> &bias, const Matx<xtype> &bias_scale, size_t stride, size_t padding, size_t dilation) {
@@ -136,6 +146,11 @@ template Matx<int8_t> Conv2D(const Matx<int8_t> &input, const Matx<int8_t> &kern
 template Matx<int8_t> Conv2D_FPGA(const Matx<int8_t> &input, const Matx<int> &inout_shift, const Matx<int8_t> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, size_t stride, size_t padding, size_t dilation);
 template Matx<int8_t> DConv2D_FPGA(const Matx<int8_t> &input, const Matx<int> &inout_shift, const Matx<int8_t> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, size_t stride, size_t padding, size_t dilation);
 template Matx<int8_t> PConv2D_FPGA(const Matx<int8_t> &input, const Matx<int> &inout_shift, const Matx<int8_t> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift);
+
+template Matx<int> DConv2D_FPGA(const Matx<int> &input, const Matx<int> &inout_shift, const Matx<int> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, size_t stride, size_t padding, size_t dilation);
+template Matx<int> PConv2D_FPGA(const Matx<int> &input, const Matx<int> &inout_shift, const Matx<int> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift);
+
+template Matx<int8_t> Quantization(const Matx<int8_t> &input, const Matx<int> &shift);
 
 template Matx<int> Conv2D_FPGA(const Matx<int> &input, const Matx<int> &inout_shift, const Matx<int> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, size_t stride, size_t padding, size_t dilation);
 

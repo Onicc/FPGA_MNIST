@@ -37,6 +37,9 @@ namespace nn {
     extern Matx<xtype> PConv2D_FPGA(const Matx<xtype> &input, const Matx<int> &inout_shift, const Matx<xtype> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift);
 
     template <typename xtype>
+    extern Matx<xtype> Quantization(const Matx<xtype> &input, const Matx<int> &shift);
+
+    template <typename xtype>
     extern Matx<xtype> Conv2D_PPQ_Test(const Matx<xtype> &input, const Matx<xtype> &inout_scale, const Matx<xtype> &kernel, const Matx<xtype> &kernel_scale, const Matx<xtype> &bias, const Matx<xtype> &bias_scale, size_t stride, size_t padding, size_t dilation = 0);
 
 } // namespace nn

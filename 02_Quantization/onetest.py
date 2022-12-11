@@ -30,7 +30,7 @@ if(out_label == label):
 else:
     print("Fail")
 
-print(output[0])
+print(output[0]*8)
 # [[[3]]
 # [[0]]
 # [[0]]
@@ -46,9 +46,11 @@ print(input_name)
 # output = sess.run(["PPQ_Variable_5"], {input_name : image})
 # print(output)
 
+layer_name = "input.36"
+
 import onnx
 model = onnx.load(ONNX_MODEL_PATH)
-model.graph.output.extend([onnx.ValueInfoProto(name="PPQ_Variable_5")])
+model.graph.output.extend([onnx.ValueInfoProto(name=layer_name)])
 sess = onnxruntime.InferenceSession(model.SerializeToString())
 input_name = sess.get_inputs()[0].name
 
@@ -60,5 +62,5 @@ outputs = sess.run([output1_name], {input_name: image})
 outputs = np.array(outputs)
 print("Input:")
 print(image[0][0])
-print("Interlayer:")
-print(outputs[0][0][0])
+print(layer_name)
+print(outputs[0][0])

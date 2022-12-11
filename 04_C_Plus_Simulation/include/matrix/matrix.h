@@ -85,6 +85,7 @@ class Matx {
         void conv2d_fpga(const Matx &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, const Matx<int> &inout_shift, size_t stride = 1);
         void dconv_fpga(const Matx &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, const Matx<int> &inout_shift, size_t stride = 1);
         void pconv_fpga(const Matx &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, const Matx<int> &inout_shift);
+        void quantization(const Matx<int> &shift);
         void conv2d_ppq_test(const Matx<xtype> &kernel, const Matx<xtype> &kernel_scale, const Matx<xtype> &bias, const Matx<xtype> &bias_scale, const Matx<xtype> &inout_scale, size_t stride);
 
         /** pooling */

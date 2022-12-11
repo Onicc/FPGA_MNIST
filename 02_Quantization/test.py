@@ -30,4 +30,8 @@ for image, label in zip(mnist_data, mnist_label):
     out = np.argmax(out, 1)
     coorect += (out == label).sum()
     total += label.shape[0]
+    if(total >= 100):
+        break
 print("acc: ", coorect/total)
+print(np.max(mnist_data[0].numpy()))
+print(np.min(mnist_data[0].numpy()))

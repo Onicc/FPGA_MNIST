@@ -995,8 +995,8 @@ void Matx<xtype>::dconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_
                 // ReLU
                 if(sum < 0) {
                     sum = 0;
-                } else if(sum > 255) {
-                    sum = 255;
+                } else if(sum > 127) {
+                    sum = 127;
                 }
                 layer.ptr[0][lc][i][j] = sum;
             }
@@ -1004,6 +1004,48 @@ void Matx<xtype>::dconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_
     }
     *this = layer;
 }
+// template <typename xtype>
+// void Matx<xtype>::dconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, const Matx<int> &inout_shift, size_t stride) {
+//     // [C, H, W] x [C, 1, K, K] = [C, Ho, Wo]
+//     if(!(_dims == 3 && kernel._dims == 4 && _channel == kernel._depth)) {
+//         cout << _dims << endl;
+//         cout << kernel._dims << endl;
+//         cout << _channel << endl;
+//         cout << "input next:" << kernel.depth() << endl;
+//         throw MyException("Matx::dconv_fpga: The input does not match the dimensions of the convolution kernel.");
+//     }
+
+//     int layer_rows = int((_rows - kernel._rows)/stride + 1);
+//     int layer_cols = int((_cols - kernel._cols)/stride + 1);
+
+//     int layer_channel = _channel;
+//     Matx layer(layer_channel, layer_rows, layer_cols);
+//     layer._dims = _dims;
+//     for(int lc = 0; lc < layer_channel; lc++) {
+//         for(int i = 0; i < layer_rows; i++) {
+//             for(int j = 0; j < layer_cols; j++) {
+//                 int sum = 0;
+//                 for(int u = 0; u < kernel._rows; u++) {
+//                     for(int v = 0; v < kernel._cols; v++) {
+//                         sum += (kernel.ptr[lc][0][u][v] * ptr[0][lc][i*stride + u][j*stride + v]);
+//                     }
+//                 }
+//                 sum >>= kernel_shift.ptr[0][0][0][lc];
+//                 int _bias = bias.ptr[0][0][0][lc];
+//                 _bias >>= bias_shift.ptr[0][0][0][lc];
+//                 sum += _bias;
+//                 // ReLU
+//                 if(sum < 0) {
+//                     sum = 0;
+//                 } else if(sum > 255) {
+//                     sum = 255;
+//                 }
+//                 layer.ptr[0][lc][i][j] = sum;
+//             }
+//         }
+//     }
+//     *this = layer;
+// }
 
 template <typename xtype>
 void Matx<xtype>::pconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_shift, const Matx<int> &bias, const Matx<int> &bias_shift, const Matx<int> &inout_shift) {
@@ -1031,8 +1073,8 @@ void Matx<xtype>::pconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_
                 // ReLU
                 if(sum < 0) {
                     sum = 0;
-                } else if(sum > 255) {
-                    sum = 255;
+                } else if(sum > 127) {
+                    sum = 127;
                 }
                 layer.ptr[0][lc][i][j] = sum;
             }
@@ -1041,6 +1083,23 @@ void Matx<xtype>::pconv_fpga(const Matx<xtype> &kernel, const Matx<int> &kernel_
     *this = layer;
 }
 
+
+template <typename xtype>
+void Matx<xtype>::quantization(const Matx<int> &shift) {
+    for(int i = 0; i < _depth; i++) {
+        for(int j = 0; j < _channel; j++) {
+            for(int k = 0; k < _rows; k++) {
+                for(int u = 0; u < _cols; u++) {
+                    int _shift = shift.ptr[0][0][0][0];
+                    // if(_shift >= 0) ptr[i][j][k][u] = (ptr[i][j][k][u] << _shift);
+                    // if(_shift < 0) ptr[i][j][k][u] = (ptr[i][j][k][u] >> (-_shift));
+                    ptr[i][j][k][u] = ceil(ptr[i][j][k][u] * pow(2, _shift));
+                    ptr[i][j][k][u] = ceil(ptr[i][j][k][u] * pow(2, -_shift));
+                }
+            }
+        }
+    }
+}
 
 template <typename xtype>
 void Matx<xtype>::conv2d_ppq_test(const Matx<xtype> &kernel, const Matx<xtype> &kernel_scale, const Matx<xtype> &bias, const Matx<xtype> &bias_scale, const Matx<xtype> &inout_scale, size_t stride) {
