@@ -1,6 +1,6 @@
 // 当输出与设定值吻合时灯亮1s
 module start_key #(
-    parameter COUNT = 75000
+    parameter COUNT = 2500000
     )(
     input wire clk,
     input wire rst_n,
