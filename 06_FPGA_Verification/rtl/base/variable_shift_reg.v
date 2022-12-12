@@ -12,7 +12,7 @@ module variable_shift_reg #(
 );
     // (* ram_style = "block" *) 
     reg [width*(depth+1)-1:0] sr;   // /rtl/base/variable_shift_reg.v(25): (vopt-3373) Range of part-select [-1:32] into 'sr' [31:0] is reversed.
-    reg [32:0] cnt;
+    reg [$clog2(depth+1):0] cnt;    // 比clog2多一位，最大值depth
 
     always@(posedge clk) begin
         if(rst == 1'b0) begin

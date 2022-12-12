@@ -89,7 +89,8 @@ module mac_unit #(
             mac_dout <= 0;
         end else begin
             if(product_dout_vld) begin
-                mac_dout <= {{(32-2*N){product[2*N-1]}}, product[2*N-1:0]} + addend_temp;
+                // 16位加到32位上
+                mac_dout <= {{(32+1-2*N){product[2*N-1]}}, product[2*N-2:0]} + addend_temp;
             end else begin
                 mac_dout <= mac_dout;
             end

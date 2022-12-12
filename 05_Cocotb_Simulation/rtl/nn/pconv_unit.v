@@ -77,7 +77,8 @@
         end else begin
             if(pconv_dout_vld == {INPUT_CHANNEL{1'b1}}) begin
                 for(i2 = 0; i2 < INPUT_CHANNEL; i2 = i2+1) begin
-                    pconv_dout_temp = pconv_dout_temp + {{(32-2*N){pconv_dout[i2][2*N-1]}}, pconv_dout[i2][2*N-1:0]};
+                    // 16位加到32位上
+                    pconv_dout_temp = pconv_dout_temp + {{(32+1-2*N){pconv_dout[i2][2*N-1]}}, pconv_dout[i2][2*N-2:0]};
                 end
                 conv_dout_vld = 1'b1;
             end else begin

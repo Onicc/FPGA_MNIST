@@ -14,7 +14,7 @@ module padding#(
 	output reg padding_dout_end
 );
 
-	reg [31:0] cnt, cnt_line, cnt_gap;
+	reg [$clog2((SIZE+2*PADDING)*(SIZE+2*PADDING)+1):0] cnt, cnt_line, cnt_gap;
 	reg read_queue;	// 从queue中读信号，真正发生给queue模块使用，数据返回在read_queue的下一个时钟
 	reg read_queue_d0;
 	wire [CHANNEL*N-1:0] queue_out;

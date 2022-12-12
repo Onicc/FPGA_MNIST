@@ -56,7 +56,7 @@
 
     // cnt1计第三行第三个(第kernelsize个)位置开始计数，从1开始，计到行底停止输出等待下s(步长)行的第三个再继续输出
     // cnt2计行从1开始
-    reg [31:0] cnt1, cnt2, in_cnt;
+    reg [$clog2(INPUT_SIZE*INPUT_SIZE+1):0] cnt1, cnt2, in_cnt;
 
     assign tmp[0] = 1'b0;
     assign tmp_vld[0] = input_vld;

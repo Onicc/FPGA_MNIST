@@ -44,7 +44,7 @@
 );
     // conv_dout[0][i] = input_din[i]*weight_din[0][i]
     wire [OUTPUT_CHANNEL-1:0] pwconv_dout_vld;
-    reg [31:0] cnt;
+    reg [$clog2(INPUT_SIZE*INPUT_SIZE+1):0] cnt;
 
     assign conv_dout_vld = (pwconv_dout_vld == {OUTPUT_CHANNEL{1'b1}})? 1'b1:1'b0;
 

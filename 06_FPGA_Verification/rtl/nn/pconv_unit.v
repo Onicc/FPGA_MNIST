@@ -40,7 +40,7 @@
     output wire [N-1:0] conv_dout,
     output reg conv_dout_vld
 );
-    wire [31:0] pconv_dout [0:INPUT_CHANNEL-1];
+    wire [2*N-1:0] pconv_dout [0:INPUT_CHANNEL-1];    // 位2*N-1会报错，仍然不知道为什么
     wire [INPUT_CHANNEL-1:0] pconv_dout_vld;
     wire [INPUT_CHANNEL-1:0] product_end;
     wire [31:0] conv_dout_temp_1;   // 取有效信号的卷积输出数据,输出数据有效时结果有效
@@ -77,8 +77,8 @@
         end else begin
             if(pconv_dout_vld == {INPUT_CHANNEL{1'b1}}) begin
                 for(i2 = 0; i2 < INPUT_CHANNEL; i2 = i2+1) begin
-                    // 16位加到31位上
-                    pconv_dout_temp = pconv_dout_temp + {{(32-2*N){pconv_dout[i2][2*N-1]}}, pconv_dout[i2][2*N-1:0]};
+                    // 16位加到32位上
+                    pconv_dout_temp = pconv_dout_temp + {{(32+1-2*N){pconv_dout[i2][2*N-1]}}, pconv_dout[i2][2*N-2:0]};
                 end
                 conv_dout_vld = 1'b1;
             end else begin

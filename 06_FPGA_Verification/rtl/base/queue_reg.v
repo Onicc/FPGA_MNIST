@@ -15,7 +15,7 @@ module queue_reg #(
     // 改为时序逻辑电路，读信号进来后需等一个时钟周期才能输出正确的数据
     // (* ram_style = "block" *) 
     reg [width*depth-1:0] qr;
-    reg [31:0] raddr;
+    reg [$clog2(depth+1):0] raddr;    // 比clog2多一位，最大值depth
 
     // assign dout = (read_flag==1'b1)? qr[width*raddr-1 -: width]:dout;   // vivado simulation
     // // assign dout = (read_flag==1'b1)? qr[width*(raddr+1)-1 -: width]:dout;    // quata simulation
