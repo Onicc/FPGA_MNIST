@@ -27,7 +27,8 @@
 
  module pconv_unit#(
     parameter N = 16,
-    parameter INPUT_CHANNEL = 3
+    parameter INPUT_CHANNEL = 3,
+    parameter MAX = 127
     )(
     input wire clk,
     input wire rst_n,
@@ -39,15 +40,19 @@
     output wire [N-1:0] conv_dout,
     output reg conv_dout_vld
 );
-    wire [31:0] pconv_dout [0:INPUT_CHANNEL-1];
+    wire [2*N-1:0] pconv_dout [0:INPUT_CHANNEL-1];
     wire [INPUT_CHANNEL-1:0] pconv_dout_vld;
     wire [INPUT_CHANNEL-1:0] product_end;
-    wire [31:0] conv_dout_temp;
+    wire [31:0] conv_dout_temp_1;   // 取有效信号的卷积输出数据,输出数据有效时结果有效
+    wire [31:0] conv_dout_temp_2;   // 最大值限幅, 当输出数据大于127时为127，否则为conv_dout_temp_1
+    wire [31:0] conv_dout_temp_1_diff;// 卷积输出数据减最大值的差值
     reg [31:0] pconv_dout_temp;
 
     // 由于FPGA右移动自动补0，因此高位也跟着一起移动。RELU操作
-    assign conv_dout_temp = conv_dout_vld? (pconv_dout_temp+bias_din)>>shift_din:0;
-    assign conv_dout = (conv_dout_temp[31-shift_din]==1)? 0:conv_dout_temp[N-1:0];
+    assign conv_dout_temp_1 = conv_dout_vld? (pconv_dout_temp+bias_din)>>shift_din:0;
+    assign conv_dout_temp_1_diff = conv_dout_temp_1 - MAX;
+    assign conv_dout_temp_2 = (conv_dout_temp_1_diff[31-shift_din]==0)? MAX:conv_dout_temp_1;
+    assign conv_dout = (conv_dout_temp_2[31-shift_din]==1)? 0:conv_dout_temp_2[N-1:0];
 
     generate
         genvar i;
@@ -72,7 +77,7 @@
         end else begin
             if(pconv_dout_vld == {INPUT_CHANNEL{1'b1}}) begin
                 for(i2 = 0; i2 < INPUT_CHANNEL; i2 = i2+1) begin
-                    pconv_dout_temp = pconv_dout_temp + pconv_dout[i2];
+                    pconv_dout_temp = pconv_dout_temp + {{(32-2*N){pconv_dout[i2][2*N-1]}}, pconv_dout[i2][2*N-1:0]};
                 end
                 conv_dout_vld = 1'b1;
             end else begin

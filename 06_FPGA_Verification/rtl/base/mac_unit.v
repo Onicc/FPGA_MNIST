@@ -18,7 +18,7 @@ module mac_unit #(
     reg multiplicand_temp_vld;
     reg [N-1:0] multiplicand_temp;
 
-    wire [31:0] product;
+    wire [N*2-1:0] product;
     wire product_dout_vld;
     wire product_end;
 
@@ -89,7 +89,8 @@ module mac_unit #(
             mac_dout <= 0;
         end else begin
             if(product_dout_vld) begin
-                mac_dout <= product+addend_temp;
+                // 16位加到31位上
+                mac_dout <= {{(32-2*N){product[2*N-1]}}, product[2*N-1:0]} + addend_temp;
             end else begin
                 mac_dout <= mac_dout;
             end

@@ -1,6 +1,6 @@
 // 当输出与设定值吻合时灯亮1s
 module output_led #(
-    parameter MODEL_OUTPUT = 80'h1D471500200000B00037,
+    parameter MODEL_OUTPUT = 80'h331946000000120C1B00,
     parameter COUNT = 75000
     )(
     input wire clk,

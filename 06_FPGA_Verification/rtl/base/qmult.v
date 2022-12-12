@@ -6,7 +6,7 @@ module qmult#(
     input wire input_vld,
     input wire [N-1:0] multiplicand_din,
     input wire [N-1:0] multiplier_din,
-    output reg [31:0] product_dout,
+    output reg [N*2-1:0] product_dout,
     output reg product_dout_vld,
     output reg product_end
 );
@@ -59,7 +59,7 @@ module qmult#(
             if(multiplier_cnt == N)  begin
                 product_end <= 1'b1;
                 product_dout_vld <= 1'b1;
-                product_dout <= {{(32-2*N){product_working[2*N-1]}}, product_working[2*N-1:0]};
+                product_dout <= product_working;
             end
         end else if (product_dout_vld) begin
             product_dout_vld <= 1'b0;

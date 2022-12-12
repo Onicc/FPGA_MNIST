@@ -198,7 +198,7 @@ int main() {
         }
         sum_num++;
 
-        if(i == 0) {
+        if(i == 1) {
             // input.show();
             conv_8.show();
         }

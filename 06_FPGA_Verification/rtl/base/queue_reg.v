@@ -13,6 +13,7 @@ module queue_reg #(
 
     // block ram
     // 改为时序逻辑电路，读信号进来后需等一个时钟周期才能输出正确的数据
+    // (* ram_style = "block" *) 
     reg [width*depth-1:0] qr;
     reg [31:0] raddr;
 

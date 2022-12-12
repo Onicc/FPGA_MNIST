@@ -30,7 +30,8 @@
     parameter KERNEL_SIZE = 3,
     parameter STRIDE = 1,
     parameter PADDING = 0,
-    parameter DILATION = 1
+    parameter DILATION = 1,
+    parameter MAX = 127
     )(
     input wire clk,
     input wire rst_n,
@@ -49,7 +50,9 @@
     wire [N-1:0] weight_mat [0:KERNEL_SIZE*KERNEL_SIZE-1];
     wire [31:0] conv_output;
     wire conv_output_vld;
-    wire [31:0] conv_dout_temp;
+    wire [31:0] conv_dout_temp_1;   // 取有效信号的卷积输出数据,输出数据有效时结果有效
+    wire [31:0] conv_dout_temp_2;   // 最大值限幅, 当输出数据大于127时为127，否则为conv_dout_temp_1
+    wire [31:0] conv_dout_temp_1_diff;// 卷积输出数据减最大值的差值
 
     // cnt1计第三行第三个(第kernelsize个)位置开始计数，从1开始，计到行底停止输出等待下s(步长)行的第三个再继续输出
     // cnt2计行从1开始
@@ -57,8 +60,10 @@
 
     assign tmp[0] = 1'b0;
     assign tmp_vld[0] = input_vld;
-    assign conv_dout_temp = conv_dout_vld? (conv_output+bias_din)>>shift_din:0;
-    assign conv_dout = (conv_dout_temp[31-shift_din]==1)? 0:conv_dout_temp[N-1:0];    // RELU，由于FPGA右移动自动补0，因此高位也跟着一起移动。RELU操作
+    assign conv_dout_temp_1 = conv_dout_vld? (conv_output+bias_din)>>shift_din:0;
+    assign conv_dout_temp_1_diff = conv_dout_temp_1 - MAX;
+    assign conv_dout_temp_2 = (conv_dout_temp_1_diff[31-shift_din]==0)? MAX:conv_dout_temp_1;
+    assign conv_dout = (conv_dout_temp_2[31-shift_din]==1)? 0:conv_dout_temp_2[N-1:0];    // RELU，由于FPGA右移动自动补0，因此高位也跟着一起移动。RELU操作
     assign conv_dout_vld = ( (cnt1-1)%STRIDE==0 && (cnt1%INPUT_SIZE)>0 && (cnt1%INPUT_SIZE)<=(INPUT_SIZE-KERNEL_SIZE+1) && (cnt2-1)%STRIDE==0 )? conv_output_vld:1'b0;
 
     generate
