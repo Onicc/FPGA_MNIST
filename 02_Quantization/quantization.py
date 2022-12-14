@@ -20,10 +20,15 @@ BATCHSIZE   = 16
 INPUT_SHAPE = [BATCHSIZE, 1, 28, 28]
 DEVICE      = 'cuda'
 PLATFORM    = TargetPlatform.NXP_INT8
-CALIBRATION = [torch.rand(size=INPUT_SHAPE)*256-128 for _ in range(32)] # 生成范围位[-128, 127]的随机数据用于矫正
-# print(CALIBRATION)
-# import sys
-# sys.exit()
+# CALIBRATION = [torch.rand(size=INPUT_SHAPE)*256-128 for _ in range(32)] # 生成范围位[-128, 127]的随机数据用于矫正
+
+from torchvision import datasets, transforms
+mnist = datasets.MNIST('00_Data', train=False, transform=transforms.Compose([transforms.ToTensor()]))
+print(mnist.data.shape)
+mnist_data = mnist.data.view(-1, BATCHSIZE, 1, 28, 28).float()
+mnist_data -= 128
+CALIBRATION = mnist_data
+
 QS          = QuantizationSettingFactory.default_setting()
 def collate_fn(batch: torch.Tensor) -> torch.Tensor:
     return batch.to(DEVICE)
