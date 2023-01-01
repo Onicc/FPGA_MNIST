@@ -2,14 +2,14 @@ import torch
 from thop import clever_format, profile
 from torchsummary import summary
 
-from net import Net_DW
+from net import Net_DW, Net_DW_Branch
 
 if __name__ == "__main__":
     input_shape = [32, 32]
     
     # 需要使用device来指定网络在GPU还是CPU运行
     device  = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    m       = Net_DW().to(device)
+    m       = Net_DW_Branch().to(device)
     summary(m, (1, input_shape[0], input_shape[1]))
     
     dummy_input     = torch.randn(1, 1, input_shape[0], input_shape[1]).to(device)

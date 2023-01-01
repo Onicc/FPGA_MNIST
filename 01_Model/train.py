@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
 
-from net import Net_DW
+from net import Net_DW, Net_DW_Branch
 
 CIFAR100_TRAIN_MEAN = (0.1307)
 CIFAR100_TRAIN_STD = (0.3081)
@@ -40,10 +40,8 @@ if __name__ == "__main__":
                                 ])),
         batch_size=batch_size, shuffle=True)
     
-    # model = Net()
-    # net_name = "Net"
-    model = Net_DW()
-    net_name = "Net_DW"
+    model = Net_DW_Branch()
+    net_name = "Net_DW_Branch"
     if gpu:
         model = model.cuda()
 

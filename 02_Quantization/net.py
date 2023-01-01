@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
  
@@ -61,6 +62,24 @@ class Net_DW(nn.Module):
 
         return x
 
+class Net_DW_Branch(nn.Module):
+    def __init__(self):
+        super(Net_DW_Branch, self).__init__()
+        self.conv1 = DWConv(in_channels=1, out_channels=4, ksize=3, stride=2)
+        self.conv2 = DWConv(in_channels=4, out_channels=4, ksize=3, stride=3)
+        self.conv3 = DWConv(in_channels=4, out_channels=4, ksize=3, stride=3)
+        self.conv4 = DWConv(in_channels=4, out_channels=4, ksize=1, stride=1)
+        self.conv5 = DWConv(in_channels=8, out_channels=10, ksize=3, stride=2)
+
+    def forward(self, x):
+        x1 = self.conv1(x)
+        x2 = self.conv2(x1)
+        x3 = self.conv3(x2)
+        x4 = self.conv4(x3)
+        x4 = torch.cat((x4, x3), dim=1)
+        x5 = self.conv5(x4)
+
+        return x5
  
 class Net1(nn.Module):
     def __init__(self):
