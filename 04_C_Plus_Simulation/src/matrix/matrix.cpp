@@ -616,6 +616,37 @@ void Matx<xtype>::dilation(size_t dilation) {
     }
 }
 
+
+/**
+ * @brief Matrix concat.
+ * @param  m                Matrix object
+ * @return Matx 
+ */
+template <typename xtype>
+Matx<xtype> Matx<xtype>::cat(const Matx<xtype> &m) {
+    Matx layer(_depth, _channel*2, _rows, _cols);
+
+    for(int i = 0; i < _depth; i++) {
+        for(int j = 0; j < _channel; j++) {
+            for(int k = 0; k < _rows; k++) {
+                for(int u = 0; u < _cols; u++) {
+                    layer.ptr[i][j][k][u] = ptr[i][j][k][u];
+                }
+            }
+        }
+        for(int j = 0; j < _channel; j++) {
+            for(int k = 0; k < _rows; k++) {
+                for(int u = 0; u < _cols; u++) {
+                    layer.ptr[i][j+_channel][k][u] = m.ptr[i][j][k][u];
+                }
+            }
+        }
+    }
+    layer._dims = 3;
+
+    return layer;
+}
+
 /**
  * @brief dims.
  * @return int 

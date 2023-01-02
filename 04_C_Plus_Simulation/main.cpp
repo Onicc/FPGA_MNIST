@@ -18,6 +18,8 @@ int main() {
     weight_map["b6"] = "../../00_Data/Param/xen/b6.xen";
     weight_map["b7"] = "../../00_Data/Param/xen/b7.xen";
     weight_map["b8"] = "../../00_Data/Param/xen/b8.xen";
+    weight_map["b9"] = "../../00_Data/Param/xen/b9.xen";
+    weight_map["b10"] = "../../00_Data/Param/xen/b10.xen";
     weight_map["shift_b1"] = "../../00_Data/Param/xen/shift_b1.xen";
     weight_map["shift_b2"] = "../../00_Data/Param/xen/shift_b2.xen";
     weight_map["shift_b3"] = "../../00_Data/Param/xen/shift_b3.xen";
@@ -26,6 +28,8 @@ int main() {
     weight_map["shift_b6"] = "../../00_Data/Param/xen/shift_b6.xen";
     weight_map["shift_b7"] = "../../00_Data/Param/xen/shift_b7.xen";
     weight_map["shift_b8"] = "../../00_Data/Param/xen/shift_b8.xen";
+    weight_map["shift_b9"] = "../../00_Data/Param/xen/shift_b9.xen";
+    weight_map["shift_b10"] = "../../00_Data/Param/xen/shift_b10.xen";
     weight_map["shift_input1"] = "../../00_Data/Param/xen/shift_input1.xen";
     weight_map["shift_input2"] = "../../00_Data/Param/xen/shift_input2.xen";
     weight_map["shift_input3"] = "../../00_Data/Param/xen/shift_input3.xen";
@@ -35,6 +39,8 @@ int main() {
     weight_map["shift_input7"] = "../../00_Data/Param/xen/shift_input7.xen";
     weight_map["shift_input8"] = "../../00_Data/Param/xen/shift_input8.xen";
     weight_map["shift_input9"] = "../../00_Data/Param/xen/shift_input9.xen";
+    weight_map["shift_input10"] = "../../00_Data/Param/xen/shift_input10.xen";
+    weight_map["shift_input11"] = "../../00_Data/Param/xen/shift_input11.xen";
     weight_map["shift_io1"] = "../../00_Data/Param/xen/shift_io1.xen";
     weight_map["shift_io2"] = "../../00_Data/Param/xen/shift_io2.xen";
     weight_map["shift_io3"] = "../../00_Data/Param/xen/shift_io3.xen";
@@ -43,6 +49,8 @@ int main() {
     weight_map["shift_io6"] = "../../00_Data/Param/xen/shift_io6.xen";
     weight_map["shift_io7"] = "../../00_Data/Param/xen/shift_io7.xen";
     weight_map["shift_io8"] = "../../00_Data/Param/xen/shift_io8.xen";
+    weight_map["shift_io9"] = "../../00_Data/Param/xen/shift_io9.xen";
+    weight_map["shift_io10"] = "../../00_Data/Param/xen/shift_io10.xen";
     weight_map["shift_w1"] = "../../00_Data/Param/xen/shift_w1.xen";
     weight_map["shift_w2"] = "../../00_Data/Param/xen/shift_w2.xen";
     weight_map["shift_w3"] = "../../00_Data/Param/xen/shift_w3.xen";
@@ -51,6 +59,8 @@ int main() {
     weight_map["shift_w6"] = "../../00_Data/Param/xen/shift_w6.xen";
     weight_map["shift_w7"] = "../../00_Data/Param/xen/shift_w7.xen";
     weight_map["shift_w8"] = "../../00_Data/Param/xen/shift_w8.xen";
+    weight_map["shift_w9"] = "../../00_Data/Param/xen/shift_w9.xen";
+    weight_map["shift_w10"] = "../../00_Data/Param/xen/shift_w10.xen";
     weight_map["w1"] = "../../00_Data/Param/xen/w1.xen";
     weight_map["w2"] = "../../00_Data/Param/xen/w2.xen";
     weight_map["w3"] = "../../00_Data/Param/xen/w3.xen";
@@ -59,6 +69,8 @@ int main() {
     weight_map["w6"] = "../../00_Data/Param/xen/w6.xen";
     weight_map["w7"] = "../../00_Data/Param/xen/w7.xen";
     weight_map["w8"] = "../../00_Data/Param/xen/w8.xen";
+    weight_map["w9"] = "../../00_Data/Param/xen/w9.xen";
+    weight_map["w10"] = "../../00_Data/Param/xen/w10.xen";
 
     weight_map["inout_root"] = "../../00_Data/MNIST/xen/";
 
@@ -143,8 +155,28 @@ int main() {
     shift_b8.load(weight_map["shift_b8"]);
     shift_in8.load(weight_map["shift_input8"]);
 
-    Matx<int> shift_in9;
+    Matx<int8_t> w9;
+    Matx<int> b9;
+    Matx<int> shift_io9, shift_w9, shift_b9, shift_in9;
+    w9.load(weight_map["w9"]);
+    b9.load(weight_map["b9"]);
+    shift_io9.load(weight_map["shift_io9"]);
+    shift_w9.load(weight_map["shift_w9"]);
+    shift_b9.load(weight_map["shift_b9"]);
     shift_in9.load(weight_map["shift_input9"]);
+
+    Matx<int8_t> w10;
+    Matx<int> b10;
+    Matx<int> shift_io10, shift_w10, shift_b10, shift_in10;
+    w10.load(weight_map["w10"]);
+    b10.load(weight_map["b10"]);
+    shift_io10.load(weight_map["shift_io10"]);
+    shift_w10.load(weight_map["shift_w10"]);
+    shift_b10.load(weight_map["shift_b10"]);
+    shift_in10.load(weight_map["shift_input10"]);
+
+    Matx<int> shift_in11;
+    shift_in11.load(weight_map["shift_input11"]);
 
     Matx<int8_t> input;
     Matx<int> output;
@@ -173,7 +205,6 @@ int main() {
     // output.show();
     // cout << softmax[1] << endl;
 
-
     int correct_num = 0;
     int sum_num = 0;
     for(int i = 0; i < 100; i++) {
@@ -189,18 +220,23 @@ int main() {
         Matx<int8_t> conv_5 = nn::DConv2D_FPGA(conv_4, shift_io5, w5, shift_w5, b5, shift_b5, 3, 1);
         Matx<int8_t> conv_6 = nn::PConv2D_FPGA(conv_5, shift_io6, w6, shift_w6, b6, shift_b6);
 
-        Matx<int8_t> conv_7 = nn::DConv2D_FPGA(conv_6, shift_io7, w7, shift_w7, b7, shift_b7, 2, 1);
+        Matx<int8_t> conv_7 = nn::DConv2D_FPGA(conv_6, shift_io7, w7, shift_w7, b7, shift_b7, 1, 0);
         Matx<int8_t> conv_8 = nn::PConv2D_FPGA(conv_7, shift_io8, w8, shift_w8, b8, shift_b8);
 
-        vector<int> softmax = conv_8.maxval_index();
+        Matx<int8_t> concat = nn::Cat(conv_8, conv_6);
+
+        Matx<int8_t> conv_9 = nn::DConv2D_FPGA(concat, shift_io9, w9, shift_w9, b9, shift_b9, 2, 1);
+        Matx<int8_t> conv_10 = nn::PConv2D_FPGA(conv_9, shift_io10, w10, shift_w10, b10, shift_b10);
+
+        vector<int> softmax = conv_10.maxval_index();
         if(softmax[1] == output.ptr[0][0][0][0]) {
             correct_num++;
         }
         sum_num++;
 
         if(i == 1) {
-            // input.show();
-            conv_8.show();
+            conv_1.show();
+            conv_10.show();
         }
     }
     cout << "acc:" << double(correct_num)/double(sum_num) << endl;

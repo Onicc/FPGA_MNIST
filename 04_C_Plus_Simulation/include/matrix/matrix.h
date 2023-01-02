@@ -63,6 +63,7 @@ class Matx {
         // xtype*** operator [] (int x);
         Matx add(const Matx &m);
         Matx sub(const Matx &m);
+        Matx cat(const Matx &m);
 
         void random(xtype maxV);
 

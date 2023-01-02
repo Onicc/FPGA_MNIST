@@ -4,12 +4,12 @@
 
 from ppq import *
 from ppq.api import *
-from net import Net_DW
+from net import Net_DW_Branch
 
 # ------------------------------------------------------------
 # Step - 0. 模型位置
 # ------------------------------------------------------------
-TORCH_MODEL_PATH = "01_Model/models/[Net_DW]-Epoch46-Acc0.921.pth"
+TORCH_MODEL_PATH = "01_Model/models/[Net_DW_Branch]-Epoch15-Acc0.869.pth"
 ONNX_INTERLATER_OUTPUT_PATH = "02_Quantization/models/interlayer_model.onnx"
 ONNX_OUTPUT_PATH = "02_Quantization/models/final_model.onnx"
 
@@ -34,7 +34,7 @@ def collate_fn(batch: torch.Tensor) -> torch.Tensor:
     return batch.to(DEVICE)
 
 # model = torchvision.models.mobilenet.mobilenet_v2(pretrained=True)
-model = Net_DW()
+model = Net_DW_Branch()
 model = model.cuda()
 print('Load weights {}.'.format(TORCH_MODEL_PATH))
 device          = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

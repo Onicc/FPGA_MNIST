@@ -48,7 +48,7 @@ class OnnxGraph:  # pylint: disable=missing-class-docstring
 
         # print(onnx_graph_proto.node)
 
-        print(self._initializers["onnx::Conv_90"].to_numpy())
+        # print(self._initializers["onnx::Conv_90"].to_numpy())
         for node in self._nodes.values():
             print(node.name)
             print("    input:")

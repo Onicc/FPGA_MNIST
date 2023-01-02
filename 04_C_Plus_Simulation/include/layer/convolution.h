@@ -42,6 +42,9 @@ namespace nn {
     template <typename xtype>
     extern Matx<xtype> Conv2D_PPQ_Test(const Matx<xtype> &input, const Matx<xtype> &inout_scale, const Matx<xtype> &kernel, const Matx<xtype> &kernel_scale, const Matx<xtype> &bias, const Matx<xtype> &bias_scale, size_t stride, size_t padding, size_t dilation = 0);
 
+    template <typename xtype>
+    extern Matx<xtype> Cat(const Matx<xtype> &input_1, const Matx<xtype> &input_2);
+
 } // namespace nn
 } // namespace xcen
 
