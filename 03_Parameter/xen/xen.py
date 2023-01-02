@@ -56,6 +56,9 @@ def auto_gen_xen(npy_root, xen_root):
     # 生成shift_io文件
     shift_io_filenames = glob.glob(npy_root + "/shift_input*.npy")
     shift_io_filenames.sort()
+    # shift_io_filenames.sort()对于超过10的排序会出问题，因此这里文件名自己生成，但必须符合规范
+    for i in range(len(shift_io_filenames)):
+        shift_io_filenames[i] = npy_root + "/shift_input{}.npy".format(i+1)
     for i in range(1, len(shift_io_filenames)):
         filename = xen_root + "/shift_io{}.xen".format(i)
         shift_input_filename = shift_io_filenames[i-1]
