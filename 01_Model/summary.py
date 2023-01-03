@@ -5,7 +5,7 @@ from torchsummary import summary
 from net import Net_DW, Net_DW_Branch
 
 if __name__ == "__main__":
-    input_shape = [32, 32]
+    input_shape = [28, 28]
     
     # 需要使用device来指定网络在GPU还是CPU运行
     device  = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
