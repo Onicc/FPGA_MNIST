@@ -24,6 +24,7 @@ VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_unit.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/padding.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_p0.v
 VERILOG_SOURCES += $(PWD)/../rtl/top/mnist.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_c1.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_c1.v

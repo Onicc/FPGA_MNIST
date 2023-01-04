@@ -4,35 +4,43 @@ module mnist#(
 
     parameter INPUT_CHANNEL_1 = 1,
     parameter INPUT_SIZE_1 = 28,
-    parameter OUTPUT_CHANNEL_1 = 6,
+    parameter OUTPUT_CHANNEL_1 = 4,
     parameter OUTPUT_SIZE_1 = 14,
     parameter KERNEL_SIZE_1 = 3,
     parameter STRIDE_1 = 2,
     parameter PADDING_1 = 1,
 
-    parameter INPUT_CHANNEL_2 = 6,
+    parameter INPUT_CHANNEL_2 = 4,
     parameter INPUT_SIZE_2 = 14,
-    parameter OUTPUT_CHANNEL_2 = 6,
+    parameter OUTPUT_CHANNEL_2 = 4,
     parameter OUTPUT_SIZE_2 = 5,
     parameter KERNEL_SIZE_2 = 3,
     parameter STRIDE_2 = 3,
     parameter PADDING_2 = 1,
 
-    parameter INPUT_CHANNEL_3 = 6,
+    parameter INPUT_CHANNEL_3 = 4,
     parameter INPUT_SIZE_3 = 5,
-    parameter OUTPUT_CHANNEL_3 = 6,
+    parameter OUTPUT_CHANNEL_3 = 4,
     parameter OUTPUT_SIZE_3 = 2,
     parameter KERNEL_SIZE_3 = 3,
     parameter STRIDE_3 = 3,
     parameter PADDING_3 = 1,
 
-    parameter INPUT_CHANNEL_4 = 6,
+    parameter INPUT_CHANNEL_4 = 4,
     parameter INPUT_SIZE_4 = 2,
-    parameter OUTPUT_CHANNEL_4 = 10,
-    parameter OUTPUT_SIZE_4 = 1,
-    parameter KERNEL_SIZE_4 = 3,
-    parameter STRIDE_4 = 2,
-    parameter PADDING_4 = 1,
+    parameter OUTPUT_CHANNEL_4 = 4,
+    parameter OUTPUT_SIZE_4 = 2,
+    parameter KERNEL_SIZE_4 = 1,
+    parameter STRIDE_4 = 1,
+    parameter PADDING_4 = 0,
+
+    parameter INPUT_CHANNEL_5 = 8,
+    parameter INPUT_SIZE_5 = 2,
+    parameter OUTPUT_CHANNEL_5 = 10,
+    parameter OUTPUT_SIZE_5 = 1,
+    parameter KERNEL_SIZE_5 = 3,
+    parameter STRIDE_5 = 2,
+    parameter PADDING_5 = 1,
 
     parameter DILATION = 1
     )(
@@ -69,7 +77,14 @@ module mnist#(
     input wire [INPUT_CHANNEL_4*5-1:0] dconv_shift_din_4,
     input wire [OUTPUT_CHANNEL_4*5-1:0] pconv_shift_din_4,
 
-    output wire [OUTPUT_CHANNEL_4*N-1:0] conv_dout,
+    input wire [INPUT_CHANNEL_5*(KERNEL_SIZE_5*KERNEL_SIZE_5)*N-1:0] dconv_weight_din_5,
+    input wire [INPUT_CHANNEL_5*OUTPUT_CHANNEL_5*N-1:0] pconv_weight_din_5,
+    input wire [INPUT_CHANNEL_5*32-1:0] dconv_bias_din_5,
+    input wire [OUTPUT_CHANNEL_5*32-1:0] pconv_bias_din_5,
+    input wire [INPUT_CHANNEL_5*5-1:0] dconv_shift_din_5,
+    input wire [OUTPUT_CHANNEL_5*5-1:0] pconv_shift_din_5,
+
+    output wire [OUTPUT_CHANNEL_5*N-1:0] conv_dout,
     output wire conv_dout_vld,
     output wire conv_dout_end
 );
@@ -138,7 +153,7 @@ module mnist#(
     wire [OUTPUT_CHANNEL_4*N-1:0] conv_dout_4;
     wire conv_dout_vld_4;
     wire conv_dout_end_4;
-    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
+    dwconv_p0 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
     // dwconv_c6 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_4), .INPUT_SIZE(INPUT_SIZE_4), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_4), .OUTPUT_SIZE(OUTPUT_SIZE_4), .KERNEL_SIZE(KERNEL_SIZE_4), .STRIDE(STRIDE_4), .PADDING(PADDING_4), .DILATION(DILATION)) dut_dwconv4 (
         .clk(clk),
         .rst_n(rst_n),
@@ -155,10 +170,29 @@ module mnist#(
         .conv_dout_end(conv_dout_end_4)
     );
 
+    wire [OUTPUT_CHANNEL_5*N-1:0] conv_dout_5;
+    wire conv_dout_vld_5;
+    wire conv_dout_end_5;
+    dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_5), .INPUT_SIZE(INPUT_SIZE_5), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_5), .OUTPUT_SIZE(OUTPUT_SIZE_5), .KERNEL_SIZE(KERNEL_SIZE_5), .STRIDE(STRIDE_5), .PADDING(PADDING_5), .DILATION(DILATION)) dut_dwconv5 (
+        .clk(clk),
+        .rst_n(rst_n),
+        .input_vld(conv_dout_vld_4),
+        .input_din(conv_dout_4),
+        .dconv_weight_din(dconv_weight_din_5),
+        .pconv_weight_din(pconv_weight_din_5),
+        .dconv_bias_din(dconv_bias_din_5),
+        .pconv_bias_din(pconv_bias_din_5),
+        .dconv_shift_din(dconv_shift_din_5),
+        .pconv_shift_din(pconv_shift_din_5),
+        .conv_dout(conv_dout_5),
+        .conv_dout_vld(conv_dout_vld_5),
+        .conv_dout_end(conv_dout_end_5)
+    );
 
-    assign conv_dout = conv_dout_4;
-    assign conv_dout_vld = conv_dout_vld_4;
-    assign conv_dout_end = conv_dout_end_4;
+
+    assign conv_dout = conv_dout_5;
+    assign conv_dout_vld = conv_dout_vld_5;
+    assign conv_dout_end = conv_dout_end_5;
 
     // Dump waves
     initial begin

@@ -160,6 +160,8 @@ def mnist(n, bitwidth):
     weight_map["b6"] = PARAM_PATH + "/b6.xen"
     weight_map["b7"] = PARAM_PATH + "/b7.xen"
     weight_map["b8"] = PARAM_PATH + "/b8.xen"
+    weight_map["b9"] = PARAM_PATH + "/b9.xen"
+    weight_map["b10"] = PARAM_PATH + "/b10.xen"
     weight_map["shift_b1"] = PARAM_PATH + "/shift_b1.xen"
     weight_map["shift_b2"] = PARAM_PATH + "/shift_b2.xen"
     weight_map["shift_b3"] = PARAM_PATH + "/shift_b3.xen"
@@ -168,6 +170,8 @@ def mnist(n, bitwidth):
     weight_map["shift_b6"] = PARAM_PATH + "/shift_b6.xen"
     weight_map["shift_b7"] = PARAM_PATH + "/shift_b7.xen"
     weight_map["shift_b8"] = PARAM_PATH + "/shift_b8.xen"
+    weight_map["shift_b9"] = PARAM_PATH + "/shift_b9.xen"
+    weight_map["shift_b10"] = PARAM_PATH + "/shift_b10.xen"
     weight_map["shift_input1"] = PARAM_PATH + "/shift_input1.xen"
     weight_map["shift_input2"] = PARAM_PATH + "/shift_input2.xen"
     weight_map["shift_input3"] = PARAM_PATH + "/shift_input3.xen"
@@ -176,6 +180,8 @@ def mnist(n, bitwidth):
     weight_map["shift_input6"] = PARAM_PATH + "/shift_input6.xen"
     weight_map["shift_input7"] = PARAM_PATH + "/shift_input7.xen"
     weight_map["shift_input8"] = PARAM_PATH + "/shift_input8.xen"
+    weight_map["shift_input9"] = PARAM_PATH + "/shift_input9.xen"
+    weight_map["shift_input10"] = PARAM_PATH + "/shift_input10.xen"
     weight_map["shift_io1"] = PARAM_PATH + "/shift_io1.xen"
     weight_map["shift_io2"] = PARAM_PATH + "/shift_io2.xen"
     weight_map["shift_io3"] = PARAM_PATH + "/shift_io3.xen"
@@ -184,6 +190,8 @@ def mnist(n, bitwidth):
     weight_map["shift_io6"] = PARAM_PATH + "/shift_io6.xen"
     weight_map["shift_io7"] = PARAM_PATH + "/shift_io7.xen"
     weight_map["shift_io8"] = PARAM_PATH + "/shift_io8.xen"
+    weight_map["shift_io9"] = PARAM_PATH + "/shift_io9.xen"
+    weight_map["shift_io10"] = PARAM_PATH + "/shift_io10.xen"
     weight_map["shift_w1"] = PARAM_PATH + "/shift_w1.xen"
     weight_map["shift_w2"] = PARAM_PATH + "/shift_w2.xen"
     weight_map["shift_w3"] = PARAM_PATH + "/shift_w3.xen"
@@ -192,6 +200,8 @@ def mnist(n, bitwidth):
     weight_map["shift_w6"] = PARAM_PATH + "/shift_w6.xen"
     weight_map["shift_w7"] = PARAM_PATH + "/shift_w7.xen"
     weight_map["shift_w8"] = PARAM_PATH + "/shift_w8.xen"
+    weight_map["shift_w9"] = PARAM_PATH + "/shift_w9.xen"
+    weight_map["shift_w10"] = PARAM_PATH + "/shift_w10.xen"
     weight_map["w1"] = PARAM_PATH + "/w1.xen"
     weight_map["w2"] = PARAM_PATH + "/w2.xen"
     weight_map["w3"] = PARAM_PATH + "/w3.xen"
@@ -200,6 +210,8 @@ def mnist(n, bitwidth):
     weight_map["w6"] = PARAM_PATH + "/w6.xen"
     weight_map["w7"] = PARAM_PATH + "/w7.xen"
     weight_map["w8"] = PARAM_PATH + "/w8.xen"
+    weight_map["w9"] = PARAM_PATH + "/w9.xen"
+    weight_map["w10"] = PARAM_PATH + "/w10.xen"
 
     weight_map["inout_root"] = INPUT_PATH
 
@@ -254,6 +266,18 @@ def mnist(n, bitwidth):
     shift_b8 = load(weight_map["shift_b8"])
     shift_io8 = load(weight_map["shift_io8"])
 
+    w9 = load(weight_map["w9"])
+    shift_w9 = load(weight_map["shift_w9"])
+    b9 = load(weight_map["b9"])
+    shift_b9 = load(weight_map["shift_b9"])
+    shift_io9 = load(weight_map["shift_io9"])
+
+    w10 = load(weight_map["w10"])
+    shift_w10 = load(weight_map["shift_w10"])
+    b10 = load(weight_map["b10"])
+    shift_b10 = load(weight_map["shift_b10"])
+    shift_io10 = load(weight_map["shift_io10"])
+
     # w1按照第二维度拆分 * pow(shift_w1[0][0][0][c] + shift_io1[0][0][0][0] - shift_b1[0][0][0][c])
     shift_o1 = []
     for i in range(b1.shape[3]):
@@ -287,6 +311,14 @@ def mnist(n, bitwidth):
     for i in range(b8.shape[3]):
         b8[:, :, :, i] *= pow(2, shift_w8[0, 0, 0, i] + shift_io8[0, 0, 0, 0] - shift_b8[0, 0, 0, i])
         shift_o8.append(shift_w8[0, 0, 0, i] + shift_io8[0, 0, 0, 0] - shift_io8[0, 0, 0, 1])
+    shift_o9 = []
+    for i in range(b9.shape[3]):
+        b9[:, :, :, i] *= pow(2, shift_w9[0, 0, 0, i] + shift_io9[0, 0, 0, 0] - shift_b9[0, 0, 0, i])
+        shift_o9.append(shift_w9[0, 0, 0, i] + shift_io9[0, 0, 0, 0] - shift_io9[0, 0, 0, 1])
+    shift_o10 = []
+    for i in range(b10.shape[3]):
+        b10[:, :, :, i] *= pow(2, shift_w10[0, 0, 0, i] + shift_io10[0, 0, 0, 0] - shift_b10[0, 0, 0, i])
+        shift_o10.append(shift_w10[0, 0, 0, i] + shift_io10[0, 0, 0, 0] - shift_io10[0, 0, 0, 1])
 
     input_din = intarray2binunit(np.array(input1, dtype=np.int32), bitwidth)
 
@@ -318,6 +350,12 @@ def mnist(n, bitwidth):
     dconv_shift_din_4 = intarray2bin(np.array(shift_o7, dtype=np.int32), 5)
     pconv_shift_din_4 = intarray2bin(np.array(shift_o8, dtype=np.int32), 5)
 
+    dconv_weight_din_5 = intarray2bin(np.array(w9, dtype=np.int32), bitwidth)
+    pconv_weight_din_5 = intarray2bin(np.array(w10, dtype=np.int32), bitwidth)
+    dconv_bias_din_5 = intarray2bin(np.array(b9, dtype=np.int32), 32)
+    pconv_bias_din_5 = intarray2bin(np.array(b10, dtype=np.int32), 32)
+    dconv_shift_din_5 = intarray2bin(np.array(shift_o9, dtype=np.int32), 5)
+    pconv_shift_din_5 = intarray2bin(np.array(shift_o10, dtype=np.int32), 5)
 
     # print(input1.shape)
 
@@ -337,7 +375,8 @@ def mnist(n, bitwidth):
            dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
            dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
            dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-           dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4
+           dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
+           dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5
 
 
 def simulation_conv():
