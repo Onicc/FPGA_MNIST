@@ -313,38 +313,38 @@ async def run_test(dut):
     tb = conv2d_tb(dut)
     await tb.init()
 
-    # ROM test data
-    input_din, verift_model_output, \
-    dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
-    dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
-    dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-    dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
-    dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5  = mnist(1, bitwidth = N)
-    tb.model_drive.add_input_output(input_din, verift_model_output, \
-                                    dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
-                                    dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
-                                    dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-                                    dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
-                                    dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5)
-    await tb.model_drive.wait_completion()
-    tb.model_drive.check()
+    # # ROM test data
+    # input_din, verift_model_output, \
+    # dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
+    # dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
+    # dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
+    # dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
+    # dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5  = mnist(1, bitwidth = N)
+    # tb.model_drive.add_input_output(input_din, verift_model_output, \
+    #                                 dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
+    #                                 dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
+    #                                 dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
+    #                                 dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
+    #                                 dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5)
+    # await tb.model_drive.wait_completion()
+    # tb.model_drive.check()
 
-    # for i in range(0, 100):
-    #     print("{}th".format(i))
-    #     input_din, verift_model_output, \
-    #     dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
-    #     dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
-    #     dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-    #     dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
-    #     dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5  = mnist(i, bitwidth = N)
-    #     tb.model_drive.add_input_output(input_din, verift_model_output, \
-    #                                     dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
-    #                                     dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
-    #                                     dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
-    #                                     dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
-    #                                     dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5)
-    #     await tb.model_drive.wait_completion()
-    #     tb.model_drive.check()
+    for i in range(0, 100):
+        print("{}th".format(i))
+        input_din, verift_model_output, \
+        dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
+        dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
+        dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
+        dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
+        dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5  = mnist(i, bitwidth = N)
+        tb.model_drive.add_input_output(input_din, verift_model_output, \
+                                        dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
+                                        dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
+                                        dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
+                                        dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4, \
+                                        dconv_weight_din_5, pconv_weight_din_5, dconv_bias_din_5, pconv_bias_din_5, dconv_shift_din_5, pconv_shift_din_5)
+        await tb.model_drive.wait_completion()
+        tb.model_drive.check()
 
     await Timer(200, "us")
     tb.stop()

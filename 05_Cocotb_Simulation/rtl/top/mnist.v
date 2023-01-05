@@ -166,14 +166,31 @@ module mnist#(
         .conv_dout_end(conv_dout_end_4)
     );
 
+    wire [INPUT_CHANNEL_5*N-1:0] concat_dout_conv3_4;
+    wire concat_dout_vld_conv3_4;
+    concat #(
+        .N(N),
+        .INPUT_CHANNEL(OUTPUT_CHANNEL_3),
+        .INPUT_SIZE(OUTPUT_SIZE_3)
+    ) dut_concat (
+        .clk(clk),
+        .rst_n(rst_n),
+        .layer_vld(conv_dout_vld_3),
+        .layer_din(conv_dout_3),
+        .branch_vld(conv_dout_vld_4),
+        .branch_din(conv_dout_4),
+        .concat_dout_vld(concat_dout_vld_conv3_4),
+        .concat_dout(concat_dout_conv3_4)
+    );
+
     wire [OUTPUT_CHANNEL_5*N-1:0] conv_dout_5;
     wire conv_dout_vld_5;
     wire conv_dout_end_5;
     dwconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL_5), .INPUT_SIZE(INPUT_SIZE_5), .OUTPUT_CHANNEL(OUTPUT_CHANNEL_5), .OUTPUT_SIZE(OUTPUT_SIZE_5), .KERNEL_SIZE(KERNEL_SIZE_5), .STRIDE(STRIDE_5), .PADDING(PADDING_5), .DILATION(DILATION)) dut_dwconv5 (
         .clk(clk),
         .rst_n(rst_n),
-        .input_vld(conv_dout_vld_4),
-        .input_din(conv_dout_4),
+        .input_vld(concat_dout_vld_conv3_4),
+        .input_din(concat_dout_conv3_4),
         .dconv_weight_din(dconv_weight_din_5),
         .pconv_weight_din(pconv_weight_din_5),
         .dconv_bias_din(dconv_bias_din_5),

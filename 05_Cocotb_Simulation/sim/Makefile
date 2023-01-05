@@ -28,6 +28,8 @@ VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_p0_k1.v
 VERILOG_SOURCES += $(PWD)/../rtl/top/mnist.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/conv_unit_k1.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/dconv_k1.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/concat.v
+VERILOG_SOURCES += $(PWD)/../rtl/peripherals/bram.v
 
 # # 设置参数
 # # Set module parameters
