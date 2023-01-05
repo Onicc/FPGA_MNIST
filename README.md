@@ -22,4 +22,4 @@ C++平台根据量化模式(power of 2)设计推理网络
 verilog根据量化模式(power of 2)设计rtl电路，在cocotb平台仿真电路
 
 ## 06 FPGA Verification
-FPGA中验证整个推理过程
+FPGA中验证整个推理过程，cocotb端已完成，FPGA侧还未加入concat
