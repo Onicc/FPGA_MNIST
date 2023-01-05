@@ -235,7 +235,6 @@ int main() {
         sum_num++;
 
         if(i == 1) {
-            conv_6.show();
             conv_8.show();
             conv_10.show();
         }

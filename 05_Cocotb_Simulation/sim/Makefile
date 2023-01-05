@@ -24,14 +24,10 @@ VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_unit.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/padding.v
 VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_p0.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_p0_k1.v
 VERILOG_SOURCES += $(PWD)/../rtl/top/mnist.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_c1.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_c1.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_unit_c1.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/dwconv_c6.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_c6.v
-VERILOG_SOURCES += $(PWD)/../rtl/nn/pconv_unit_c6.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/conv_unit_k1.v
+VERILOG_SOURCES += $(PWD)/../rtl/nn/dconv_k1.v
 
 # # 设置参数
 # # Set module parameters

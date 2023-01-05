@@ -1,5 +1,6 @@
+// padding = 0时卷积
 
-module dwconv_c6#(
+module dwconv_p0_k1#(
     parameter N = 16,
     parameter INPUT_CHANNEL = 3,
     parameter INPUT_SIZE = 6,
@@ -25,33 +26,14 @@ module dwconv_c6#(
     output wire conv_dout_end
 );
 
-    wire [INPUT_CHANNEL*N-1:0] padding_dout;
-    wire [INPUT_CHANNEL*N-1:0] padding_temp;
-    wire padding_dout_vld;
-    wire padding_dout_end;
-
-    // 让他在修正的时候改变 不修正的时候保留原始值
-    // assign padding_temp = (padding_dout_vld == 1'b1)? padding_dout:padding_temp;
-
-    padding #(.N(N), .CHANNEL(INPUT_CHANNEL), .SIZE(INPUT_SIZE), .PADDING(PADDING)) dut_padding(
+    wire [INPUT_CHANNEL*N-1:0] dconv_dout;
+    wire dconv_dout_vld;
+    wire dconv_dout_end;
+    dconv_k1 #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL), .INPUT_SIZE(INPUT_SIZE+2*PADDING)) dut_dconv_k1(
         .clk(clk),
         .rst_n(rst_n),
         .input_vld(input_vld),
         .input_din(input_din),
-        .padding_dout(padding_dout),
-        .padding_dout_vld(padding_dout_vld),
-        .padding_dout_end(padding_dout_end)
-    );
-
-
-    wire [INPUT_CHANNEL*N-1:0] dconv_dout;
-    wire dconv_dout_vld;
-    wire dconv_dout_end;
-    dconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL), .INPUT_SIZE(INPUT_SIZE+2*PADDING), .KERNEL_SIZE(KERNEL_SIZE), .STRIDE(STRIDE), .PADDING(PADDING), .DILATION(DILATION)) dut_dconv(
-        .clk(clk),
-        .rst_n(rst_n),
-        .input_vld(padding_dout_vld),
-        .input_din(padding_dout),
         .weight_din(dconv_weight_din),
         .bias_din(dconv_bias_din),
         .shift_din(dconv_shift_din),
@@ -64,7 +46,7 @@ module dwconv_c6#(
     wire pconv_dout_vld;
     wire pconv_dout_end;
 
-    pconv_c6 #(.N(N), .INPUT_SIZE(OUTPUT_SIZE), .OUTPUT_CHANNEL(OUTPUT_CHANNEL)) dut_pwconv(
+    pconv #(.N(N), .INPUT_CHANNEL(INPUT_CHANNEL), .INPUT_SIZE(OUTPUT_SIZE), .OUTPUT_CHANNEL(OUTPUT_CHANNEL)) dut_pwconv(
         .clk(clk),
         .rst_n(rst_n),
         .input_vld(dconv_dout_vld),
@@ -83,8 +65,8 @@ module dwconv_c6#(
 
     // Dump waves
     initial begin
-        $dumpfile("dwconv_c6.vcd");
-        $dumpvars(1, dwconv_c6);
+        $dumpfile("dwconv_p0_k1.vcd");
+        $dumpvars(1, dwconv_p0_k1);
     end
 
 endmodule
