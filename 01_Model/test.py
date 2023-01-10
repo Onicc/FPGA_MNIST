@@ -19,7 +19,7 @@ if __name__ == "__main__":
                                     # torchvision.transforms.Normalize(
                                     #     CIFAR100_TRAIN_MEAN, CIFAR100_TRAIN_STD)
                                 ])),
-        batch_size=batch_size, shuffle=True)
+        batch_size=batch_size, shuffle=False)
     
     model = Net_DW()
 
@@ -51,6 +51,8 @@ if __name__ == "__main__":
             c = (predicted == labels).squeeze().sum()
             test_correct += c
             test_sum += labels.shape[0]
+        if(iteration == 1):
+            print(outputs, labels)
     t2 = time.time()
     
     val_accuracy = (test_correct / test_sum).item()
