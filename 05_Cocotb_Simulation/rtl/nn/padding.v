@@ -3,7 +3,7 @@ module padding#(
 	parameter CHANNEL = 3,
 	parameter SIZE = 32,
 	parameter PADDING = 1,
-	parameter CLK_INTERVAL = 13		// N+5 padding输出的时钟周期，完全一一对应
+	parameter CLK_INTERVAL = 9		// N+5 padding输出的时钟周期，完全一一对应
 	)(
 	input wire clk,
 	input wire rst_n,

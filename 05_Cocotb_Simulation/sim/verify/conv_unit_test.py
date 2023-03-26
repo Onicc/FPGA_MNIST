@@ -204,7 +204,7 @@ class Conv2dDrive(object):
                     await edge                                              # 等待上升沿
                     self.input_vld.value = 0                                # 关闭输入有效
                     # for i in range(19):
-                    for i in range(N + 4):
+                    for i in range(N//2 + 4):
                         await edge                                          # 等待上升沿
             else:
                 await edge
@@ -270,7 +270,7 @@ class conv2d_tb(object):
             dut.dconv_weight_din_3, dut.pconv_weight_din_3, dut.dconv_bias_din_3, dut.pconv_bias_din_3, dut.dconv_shift_din_3, dut.pconv_shift_din_3, \
             dut.dconv_weight_din_4, dut.pconv_weight_din_4, dut.dconv_bias_din_4, dut.pconv_bias_din_4, dut.dconv_shift_din_4, dut.pconv_shift_din_4, \
             dut.conv_dout, dut.conv_dout_vld, dut.conv_dout_end)
-        self.clock_ctrl = ClockDomain(self.dut.clk, 10, 'ns', self.dut.rst_n, False)
+        self.clock_ctrl = ClockDomain(self.dut.clk, 20, 'ns', self.dut.rst_n, False)
 
     async def init(self):
         self.input_driver_thread = cocotb.fork(self.model_drive.input_driver())

@@ -147,8 +147,8 @@ def dconv_model(input_channel, input_size, kernel_size, stride, padding = None, 
 
 from nio import load
 
-PARAM_PATH = "/home/caixc/Documents/Work/Project/NNA/FPGA_MNIST/00_Data/Param/xen"
-INPUT_PATH = "/home/caixc/Documents/Work/Project/NNA/FPGA_MNIST/00_Data/MNIST/xen"
+PARAM_PATH = "../../00_Data/Param/xen"
+INPUT_PATH = "../../00_Data/MNIST/xen"
 
 def mnist(n, bitwidth):
     weight_map = {}

@@ -22,7 +22,7 @@ module mac_unit #(
     wire product_dout_vld;
     wire product_end;
 
-    qmult #(.N(N)) u_mult(
+    qmult_radix4 #(.N(N)) u_mult(
         .clk(clk),
         .rst_n(rst_n),
         .input_vld(addend_temp_vld & multiplicand_temp_vld),
