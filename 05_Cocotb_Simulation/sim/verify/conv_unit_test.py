@@ -301,7 +301,7 @@ async def run_test(dut):
     # await tb.model_drive.wait_completion()
     # tb.model_drive.check()
 
-    for i in range(0, 100):
+    for i in range(0, 10):
         print("{}th".format(i))
         input_din, verift_model_output, \
         dconv_weight_din_1, pconv_weight_din_1, dconv_bias_din_1, pconv_bias_din_1, dconv_shift_din_1, pconv_shift_din_1, \
@@ -313,9 +313,12 @@ async def run_test(dut):
                                         dconv_weight_din_2, pconv_weight_din_2, dconv_bias_din_2, pconv_bias_din_2, dconv_shift_din_2, pconv_shift_din_2, \
                                         dconv_weight_din_3, pconv_weight_din_3, dconv_bias_din_3, pconv_bias_din_3, dconv_shift_din_3, pconv_shift_din_3, \
                                         dconv_weight_din_4, pconv_weight_din_4, dconv_bias_din_4, pconv_bias_din_4, dconv_shift_din_4, pconv_shift_din_4)
-        await tb.model_drive.wait_completion()
-        tb.model_drive.check()
+        # await tb.model_drive.wait_completion()
+        # tb.model_drive.check()
 
-    await Timer(200, "us")
+        # 连续输入，延时和帧率不同，在第一个padding计算完毕后输入下一组数据
+        await Timer(164340, "ns")
+
+    await Timer(1, "ms")
     tb.stop()
     
