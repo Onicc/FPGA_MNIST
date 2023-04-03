@@ -316,6 +316,9 @@ async def run_test(dut):
         await tb.model_drive.wait_completion()
         tb.model_drive.check()
 
-    await Timer(200, "us")
+        # 连续输入，延时和帧率不同，在第一个padding计算完毕后输入下一组数据
+        # await Timer(118170, "ns")
+
+    await Timer(1, "ms")
     tb.stop()
     

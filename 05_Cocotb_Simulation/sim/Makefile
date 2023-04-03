@@ -1,4 +1,8 @@
 TOPLEVEL_LANG ?= verilog
+SIM ?= icarus
+# SIM ?= questa
+# SIM ?= vcs
+
 PWD=$(shell pwd)
 
 # # Conv2d parameters
